@@ -1,5 +1,0 @@
-C:\Users\P.Bachmann\Documents\HSZ-T\Semester 3\Methoden der Programmierung\Fallstudie\CrossText.Service\CrossText.Service\bin\CrossText.Service.dll
-C:\Users\P.Bachmann\Documents\HSZ-T\Semester 3\Methoden der Programmierung\Fallstudie\CrossText.Service\CrossText.Service\bin\CrossText.Service.pdb
-C:\Users\P.Bachmann\Documents\HSZ-T\Semester 3\Methoden der Programmierung\Fallstudie\CrossText.Service\CrossText.Service\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\P.Bachmann\Documents\HSZ-T\Semester 3\Methoden der Programmierung\Fallstudie\CrossText.Service\CrossText.Service\obj\Debug\CrossText.Service.dll
-C:\Users\P.Bachmann\Documents\HSZ-T\Semester 3\Methoden der Programmierung\Fallstudie\CrossText.Service\CrossText.Service\obj\Debug\CrossText.Service.pdb
