@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" href="../../submodules/qunit/qunit/qunit.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="../../submodules/qunit/qunit/qunit.js"></script>
+  <script type="text/javascript" src="../../submodules/qmock/qmock.js"></script>
+
+  <script>
+  $(document).ready(function(){
+    
+	test("simplest mock-object test", function() {
+	    var simpleMock = new Mock();
+	    ok(simpleMock.verify(), "verify() should be true, since the mock-object has no conditions");
+	});
+
+	test("mock-object with limited calls", function() {
+	    var jumper = new Mock();
+            jumper
+	        .expects(0, 2)
+	            .method('jump');
+	    
+	    jumper.jump();
+            ok(jumper.verify(), "is ok, because 'jump' was just called once");
+	    jumper.jump();
+            ok(jumper.verify(), "still ok, because 'jump' was just called twice");
+	    jumper.jump();
+            ok(jumper.verify(), "fails, because now it's too much");	    
+	});
+
+	test("mock-object with argument", function() {
+	    var jumper = new Mock();
+            jumper
+	        .expects(1)
+	            .method('jump')
+                    .accepts('high');
+
+	    jumper.jump('high');
+            ok(jumper.verify(), "ok, because everything is as expected");  
+	});
+
+	test("mock-object with return value", function() {
+	    var jumper = new Mock();
+            jumper
+	        .expects(1)
+	            .method('jump')
+                    .returns('yeah');
+
+	    var answer = jumper.jump();
+            equal(answer, "yeah", "ok, because it's the expected value"); 
+            equal(answer, "Jiiiihaaaaa", "fails, because it's not the expected value");  
+	});	
+
+  });
+  </script>
+  
+</head>
+<body>
+  <h1 id="qunit-header">QUnit example</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+</html>
+
