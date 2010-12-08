@@ -95,8 +95,8 @@ namespace CrossText.Service.Test
         {
             ICrossTextService target = CreateICrossTextService(); // TODO: Initialize to an appropriate value
             int number = 0; // TODO: Initialize to an appropriate value
-            byte[] expected = null; // TODO: Initialize to an appropriate value
-            byte[] actual;
+            string expected = null; // TODO: Initialize to an appropriate value
+            string actual;
             actual = target.GetTeletextSite(number);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -126,8 +126,8 @@ namespace CrossText.Service.Test
             ICrossTextService target = CreateICrossTextService(); // TODO: Initialize to an appropriate value
             int SiteNumber = 0; // TODO: Initialize to an appropriate value
             int subSiteNumber = 0; // TODO: Initialize to an appropriate value
-            byte[] expected = null; // TODO: Initialize to an appropriate value
-            byte[] actual;
+            string expected = null; // TODO: Initialize to an appropriate value
+            string actual;
             actual = target.GetTeletextSubSite(SiteNumber, subSiteNumber);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");

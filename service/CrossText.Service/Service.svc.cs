@@ -12,14 +12,14 @@ namespace CrossText.Service
 {
     public class Service : ICrossTextService
     {
-        public byte[] GetTeletextSite(int number)
+        public string GetTeletextSite(int number)
         {
             try
             {
               // Get the Image
               string Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], number, "00");
-
-              return Helper.GetImageFromURL(Url);
+              byte[] image = Helper.GetImageFromURL(Url);
+              return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
             }
             catch (Exception ex)
             {
@@ -28,14 +28,14 @@ namespace CrossText.Service
             }
         }
 
-        public byte[] GetTeletextSubSite(int SiteNumber, int subSiteNumber)
+        public string GetTeletextSubSite(int SiteNumber, int subSiteNumber)
         {
             try
             {
               // Get the Image
               string Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], SiteNumber, string.Format("{0:00}", subSiteNumber));
-
-              return Helper.GetImageFromURL(Url);
+              byte[] image = Helper.GetImageFromURL(Url);
+              return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
             }
             catch (Exception ex)
             {

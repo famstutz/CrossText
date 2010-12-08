@@ -107,8 +107,8 @@ namespace CrossText.Service.Test
         {
             Service target = new Service();
             int number = 101;
-            byte[] expected = Helper.GetImageFromURL(string.Format("http://www.teletext.ch/pics/SF1/{0}-{1}.gif", number, "00"));
-            byte[] actual;
+            string expected = System.Convert.ToBase64String(Helper.GetImageFromURL(string.Format("http://www.teletext.ch/pics/SF1/{0}-{1}.gif", number, "00")));
+            string actual;
             actual = target.GetTeletextSite(number);
             Assert.AreEqual(expected, actual);
         }
@@ -137,8 +137,8 @@ namespace CrossText.Service.Test
             Service target = new Service(); // TODO: Initialize to an appropriate value
             int SiteNumber = 0; // TODO: Initialize to an appropriate value
             int subSiteNumber = 0; // TODO: Initialize to an appropriate value
-            byte[] expected = null; // TODO: Initialize to an appropriate value
-            byte[] actual;
+            string expected = null; // TODO: Initialize to an appropriate value
+            string actual;
             actual = target.GetTeletextSubSite(SiteNumber, subSiteNumber);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");

@@ -48,6 +48,13 @@ namespace CrossText.Service
             return imageToByteArray(img);
         }
 
+        public static string GetBase64DataURI(string mimeType, byte[] data)
+        {
+            var base64Data = System.Convert.ToBase64String(data);
+            return string.Format("data:{0};base64,{1}", new object[] { mimeType, base64Data });
+            
+        }
+
         private static byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();

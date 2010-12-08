@@ -17,11 +17,11 @@ namespace CrossText.Service
 
         [OperationContract]
         [WebGet]
-        byte[] GetTeletextSite(int number);
+        string GetTeletextSite(int number);
         
         [OperationContract]
         [WebGet]
-        byte[] GetTeletextSubSite(int SiteNumber, int subSiteNumber);
+        string GetTeletextSubSite(int SiteNumber, int subSiteNumber);
         
         [OperationContract]
         [WebGet]
