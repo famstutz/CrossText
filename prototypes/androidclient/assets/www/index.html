@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>CrossText</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="jqtouch/jqtouch.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="themes/jqt/theme.min.css" />
+    <script type="text/javascript" charset="utf-8" src="jqtouch/jquery.1.4.4.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jqtouch/jqtouch.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8">
+   
+    const SERVICE_URL = "http://192.168.11.5/Service.svc/";
+   
+    $().ready(function()
+    {
+    
+        $.ajaxSetup({
+            timeout: 7000
+        });
+        
+        $("#MenuStructure").click(function()
+        {
+            $.getJSON(SERVICE_URL + "GetMenuStructure?callback=?",
+            {}, 
+            function(data)
+            {
+                $.each(data, function(index, value) { 
+                    alert(value.Title); 
+                });
+            });
+        });
+        
+        $("#GetPage").click(function()
+        {
+            $.getJSON(SERVICE_URL + "GetTeletextSite?callback=?",
+            {number: 500}, 
+            function(data)
+            {
+                alert(data);
+            });
+        });
+        
+    });
+    
+    
+    var jQT = new $.jQTouch({
+                icon: 'jqtouch.png',
+                addGlossToIcon: false,
+                startupScreen: 'jqt_startup.png',
+                statusBar: 'black',
+                preloadImages: [
+                    'themes/jqt/img/back_button.png',
+                    'themes/jqt/img/back_button_clicked.png',
+                    'themes/jqt/img/button_clicked.png',
+                    'themes/jqt/img/grayButton.png',
+                    'themes/jqt/img/whiteButton.png',
+                    'themes/jqt/img/loading.gif'
+                    ]
+            });
+	  
+        
+	var preventBehavior = function(e) { 
+      e.preventDefault(); 
+    };
+
+    function dump_pic(data)
+    {
+      var viewport = document.getElementById('viewport');
+      console.log(data);
+      viewport.style.display = "";
+      viewport.style.position = "absolute";
+      viewport.style.top = "10px";
+      viewport.style.left = "10px";
+      document.getElementById("test_img").src = "data:image/jpeg;base64," + data;
+    }
+    
+    function close()
+    {
+      var viewport = document.getElementById('viewport');
+      viewport.style.position = "relative";
+      viewport.style.display = "none";
+    }
+
+    function fail(fail)
+    {
+      alert(fail);
+    }
+
+  	// This is just to do this.
+  	function readFile()
+  	{  	
+   		navigator.file.read('/sdcard/phonegap.txt', fail , fail);
+  	}
+
+  	function writeFile()
+  	{
+  	  	navigator.file.write('foo.txt', "This is a test of writing to a file", fail, fail);
+  	}
+
+	function init(){
+		document.addEventListener("touchmove", preventBehavior, false);
+	}	
+	   
+    
+  </script>
+  </head>
+  <body onload="init();" id="stage" class="theme">
+    <h1>Welcome to PhoneGap!</h1>
+    <div id="home" class="current">
+        <ul class="rounded"> 
+            <li class="forward"><a id="MenuStructure" href="#">GetMenuStructure</a></li>
+            <li class="forward"><a id="GetPage" href="#">Page 100</a></li>   
+        </ul> 
+    </div>
+
+    
+    
+    <div id="viewport" class="viewport" style="display: none;">       
+      <img style="width:60px;height:60px" id="test_img" src="" />
+    </div> 
+  </body>
+</html>
