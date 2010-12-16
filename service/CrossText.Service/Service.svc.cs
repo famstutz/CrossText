@@ -14,17 +14,25 @@ namespace CrossText.Service
     {
         public string GetTeletextSite(int number)
         {
+            string Url = string.Empty;
+
             try
             {
-              // Get the Image
-              string Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], number, "00");
-              byte[] image = Helper.GetImageFromURL(Url);
-              return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
+              // Check first if URL with 00 does exists
+              Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], number, "00");
+
+              if (!Helper.CheckIfURLExists(new Uri(Url)))
+              {
+                // Get the Image
+                Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], number, "01");
+              }
+
+              return Helper.GetImageFromURL(Url);
             }
             catch (Exception ex)
             {
                 FaultContract fault = new FaultContract();
-                throw new FaultException<FaultContract>(fault, new FaultReason("Teletext Site couldn't be found"));
+                throw new FaultException<FaultContract>(fault, new FaultReason(string.Format("Teletext Site couldn't be found, {0}", Url)));
             }
         }
 
