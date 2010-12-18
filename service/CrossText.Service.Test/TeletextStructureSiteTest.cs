@@ -69,20 +69,28 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for TeletextStructureSite Constructor
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void TeletextStructureSiteConstructorTest()
         {
-            TeletextStructureSite target = new TeletextStructureSite();
+            int siteNumber = 0; // TODO: Initialize to an appropriate value
+            TeletextStructureSite target = new TeletextStructureSite(siteNumber);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
         /// <summary>
         ///A test for SiteNumber
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void SiteNumberTest()
         {
-            TeletextStructureSite target = new TeletextStructureSite(); // TODO: Initialize to an appropriate value
+            int siteNumber = 0; // TODO: Initialize to an appropriate value
+            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             target.SiteNumber = expected;
@@ -94,10 +102,14 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for SubSites
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void SubSitesTest()
         {
-            TeletextStructureSite target = new TeletextStructureSite(); // TODO: Initialize to an appropriate value
+            int siteNumber = 0; // TODO: Initialize to an appropriate value
+            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
             List<int> expected = null; // TODO: Initialize to an appropriate value
             List<int> actual;
             target.SubSites = expected;

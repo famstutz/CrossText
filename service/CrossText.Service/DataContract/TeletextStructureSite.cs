@@ -41,9 +41,10 @@ namespace CrossText.Service.DataContract
         /// <summary>
         /// Initializes a new instance of the <see cref="TeletextStructureSite"/> class.
         /// </summary>
-        public TeletextStructureSite()
+        public TeletextStructureSite(int siteNumber)
         {
-            this.SubSites = new List<int>();
+            SiteNumber = siteNumber;
+            SubSites = new List<int>();
         }
         #endregion
     }

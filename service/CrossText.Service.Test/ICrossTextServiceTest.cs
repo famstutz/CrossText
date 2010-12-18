@@ -76,6 +76,9 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for GetMenuStructure
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void GetMenuStructureTest()
         {
@@ -90,12 +93,15 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for GetTeletextSite
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void GetTeletextSiteTest()
         {
             ICrossTextService target = CreateICrossTextService(); // TODO: Initialize to an appropriate value
             int number = 0; // TODO: Initialize to an appropriate value
-            string expected = null; // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.GetTeletextSite(number);
             Assert.AreEqual(expected, actual);
@@ -105,6 +111,9 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for GetTeletextStructure
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void GetTeletextStructureTest()
         {
@@ -120,13 +129,16 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for GetTeletextSubSite
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void GetTeletextSubSiteTest()
         {
             ICrossTextService target = CreateICrossTextService(); // TODO: Initialize to an appropriate value
             int SiteNumber = 0; // TODO: Initialize to an appropriate value
             int subSiteNumber = 0; // TODO: Initialize to an appropriate value
-            string expected = null; // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.GetTeletextSubSite(SiteNumber, subSiteNumber);
             Assert.AreEqual(expected, actual);

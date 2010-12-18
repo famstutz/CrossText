@@ -1,4 +1,4 @@
-﻿using CrossText.Service.DataContract;
+﻿using CrossText.Service.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
@@ -8,11 +8,11 @@ namespace CrossText.Service.Test
     
     
     /// <summary>
-    ///This is a test class for MenuStructureListTest and is intended
-    ///to contain all MenuStructureListTest Unit Tests
+    ///This is a test class for XmlHelperTest and is intended
+    ///to contain all XmlHelperTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class MenuStructureListTest
+    public class XmlHelperTest
     {
 
 
@@ -66,32 +66,19 @@ namespace CrossText.Service.Test
 
 
         /// <summary>
-        ///A test for MenuStructureList Constructor
+        ///A test for IsValidXml
         ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void MenuStructureListConstructorTest()
+        public void IsValidXmlTest()
         {
-            MenuStructureList target = new MenuStructureList();
-            Assert.Inconclusive("TODO: Implement code to verify target");
-        }
-
-        /// <summary>
-        ///A test for Equals
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
-        [TestMethod()]
-        public void EqualsTest()
-        {
-            MenuStructureList target = new MenuStructureList(); // TODO: Initialize to an appropriate value
-            object obj = null; // TODO: Initialize to an appropriate value
+            string xmlFile = string.Empty; // TODO: Initialize to an appropriate value
+            string schemaFile = string.Empty; // TODO: Initialize to an appropriate value
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
-            actual = target.Equals(obj);
+            actual = XmlHelper.IsValidXml(xmlFile, schemaFile);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }

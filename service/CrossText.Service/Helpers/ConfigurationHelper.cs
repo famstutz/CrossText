@@ -12,6 +12,8 @@ namespace CrossText.Service.Helpers
         private const String TELETEXT_STRUCTURE_DEFINITION_KEY = "TeletextStructureDefinition";
         private const String TELETEXT_STRUCTURE_SCHEMA_KEY = "TeletextStructureSchema";
         private const String TELETEXT_STRUCTURE_SCHEMA_NAMESPACE_KEY = "TeletextStructureSchemaNamespace";
+        private const String TELETEXT_BASE_URL = "TeletextBaseUrl";
+        private const String IMAGE_MIME_TYPE = "ImageMimeType";
         #endregion
 
         #region Static Public Methods
@@ -22,11 +24,7 @@ namespace CrossText.Service.Helpers
         {
             get
             {
-                String appSetting = ConfigurationManager.AppSettings[TELETEXT_STRUCTURE_DEFINITION_KEY];
-                if (String.IsNullOrEmpty(appSetting))
-                    throw new ApplicationException(String.Format("Web.config does not contain AppSetting '{0}'", TELETEXT_STRUCTURE_DEFINITION_KEY));
-
-                return appSetting;
+                return GetSetting<String>(TELETEXT_STRUCTURE_DEFINITION_KEY);
             }
         }
 
@@ -37,11 +35,7 @@ namespace CrossText.Service.Helpers
         {
             get
             {
-                String appSetting = ConfigurationManager.AppSettings[TELETEXT_STRUCTURE_SCHEMA_KEY];
-                if (String.IsNullOrEmpty(appSetting))
-                    throw new ApplicationException(String.Format("Web.config does not contain AppSetting '{0}'", TELETEXT_STRUCTURE_SCHEMA_KEY));
-
-                return appSetting;
+                return GetSetting<String>(TELETEXT_STRUCTURE_SCHEMA_KEY);
             }
         }
 
@@ -52,12 +46,52 @@ namespace CrossText.Service.Helpers
         {
             get
             {
-                String appSetting = ConfigurationManager.AppSettings[TELETEXT_STRUCTURE_SCHEMA_NAMESPACE_KEY];
-                if (String.IsNullOrEmpty(appSetting))
-                    throw new ApplicationException(String.Format("Web.config does not contain AppSetting '{0}'", TELETEXT_STRUCTURE_SCHEMA_NAMESPACE_KEY));
-
-                return appSetting;
+                return GetSetting<String>(TELETEXT_STRUCTURE_SCHEMA_NAMESPACE_KEY);
             }
+        }
+
+        /// <summary>
+        /// Gets the teletext base URL.
+        /// </summary>
+        public static String TeletextBaseUrl
+        {
+            get
+            {
+                return GetSetting<String>(TELETEXT_BASE_URL);
+            }
+        }
+
+        public static String ImageMimeType
+        {
+            get
+            {
+                return GetSetting<String>(IMAGE_MIME_TYPE);
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the setting.
+        /// </summary>
+        /// <param name="setting">The setting.</param>
+        /// <returns></returns>
+        private static T GetSetting<T>(String settingKey)
+        {
+            String appSetting = ConfigurationManager.AppSettings[settingKey];
+            T convertedAppSetting;
+
+            if (String.IsNullOrEmpty(appSetting))
+                throw new ApplicationException(String.Format("Web.config does not contain AppSetting '{0}'", settingKey));
+            try
+            {
+                convertedAppSetting = (T)Convert.ChangeType(appSetting, typeof(T));
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Could not convert AppSetting-value '{0}' of key '{1}' to type '{2}'", appSetting, settingKey, typeof(T).ToString()), ex);
+            }
+
+            return convertedAppSetting;
         }
         #endregion
     }

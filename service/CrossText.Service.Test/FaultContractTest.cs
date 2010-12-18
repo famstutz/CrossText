@@ -68,6 +68,9 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for FaultContract Constructor
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void FaultContractConstructorTest()
         {
@@ -78,6 +81,9 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for Message
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void MessageTest()
         {
@@ -93,6 +99,9 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for Source
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void SourceTest()
         {
@@ -108,6 +117,9 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for StackTrace
         ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         public void StackTraceTest()
         {

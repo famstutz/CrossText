@@ -25,17 +25,17 @@ namespace CrossText.Service
 
             try
             {
-              // Check first if URL with 00 does exists
-              Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], number, "00");
+                // Check first if URL with 00 does exists
+                Url = string.Format(ConfigurationHelper.TeletextBaseUrl, number, "00");
 
-              if (!Helper.CheckIfURLExists(new Uri(Url)))
-              {
-                // Get the Image
-                Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], number, "01");
-              }
+                if (!Helper.CheckIfURLExists(new Uri(Url)))
+                {
+                    // Get the Image
+                    Url = string.Format(ConfigurationHelper.TeletextBaseUrl, number, "01");
+                }
 
-              byte[] image = Helper.GetImageFromURL(Url);
-              return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
+                byte[] image = Helper.GetImageFromURL(Url);
+                return Helper.GetBase64DataURI(ConfigurationHelper.ImageMimeType, image);
             }
             catch (Exception ex)
             {
@@ -54,15 +54,15 @@ namespace CrossText.Service
         {
             try
             {
-              // Get the Image
-              string Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], SiteNumber, string.Format("{0:00}", subSiteNumber));
-              byte[] image = Helper.GetImageFromURL(Url);
-              return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
+                // Get the Image
+                string Url = string.Format(ConfigurationHelper.TeletextBaseUrl, SiteNumber, string.Format("{0:00}", subSiteNumber));
+                byte[] image = Helper.GetImageFromURL(Url);
+                return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
             }
             catch (Exception ex)
             {
-              FaultContract fault = new FaultContract();
-              throw new FaultException<FaultContract>(fault, new FaultReason("Teletext Site couldn't be found"));
+                FaultContract fault = new FaultContract();
+                throw new FaultException<FaultContract>(fault, new FaultReason("Teletext Site couldn't be found"));
             }
         }
 
@@ -73,22 +73,19 @@ namespace CrossText.Service
         /// <returns></returns>
         public DataContract.TeletextStructureSite GetTeletextStructure(int SiteNumber)
         {
-          TeletextStructureSite siteInfo = new TeletextStructureSite();
-          siteInfo.SiteNumber = SiteNumber;
+            TeletextStructureSite siteInfo = new TeletextStructureSite(SiteNumber);
 
-          // check if Subsites exists ?
-        
+            // check if Subsites exists
             for (int indexSite = 0; indexSite < 10; indexSite++)
-			      {
-              string Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], SiteNumber, string.Format("{0:00}", indexSite));
+            {
+                string Url = string.Format(ConfigurationHelper.TeletextBaseUrl, SiteNumber, string.Format("{0:00}", indexSite));
+                if (Helper.CheckIfURLExists(new Uri(Url)))
+                {
+                    siteInfo.SubSites.Add(indexSite);
+                }
+            }
 
-              if (Helper.CheckIfURLExists(new Uri(Url)))
-              {
-			          siteInfo.SubSites.Add(indexSite);
-              }
-          }
-
-          return siteInfo;
+            return siteInfo;
         }
 
         /// <summary>
