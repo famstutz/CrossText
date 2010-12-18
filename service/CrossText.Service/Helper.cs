@@ -10,7 +10,6 @@ namespace CrossText.Service
 {
     public static class Helper
     {
-
         public static bool CheckIfURLExists(Uri url)
         {
             try

@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CrossText.Service.DataContract;
+﻿using CrossText.Service.DataContract;
 
 namespace CrossText.Service.MenuStructureLoader
 {
+    /// <summary>
+    /// Provides the functionality to load MenuStructures-items
+    /// </summary>
     interface IMenuStructureLoader
     {
+        /// <summary>
+        /// Loads the menu structures.
+        /// </summary>
+        /// <returns></returns>
         MenuStructureList LoadMenuStructures();
     }
 }

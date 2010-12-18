@@ -1,20 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Configuration;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using System.Text;
 using CrossText.Service.DataContract;
-using System.Configuration;
-using System.Xml;
-using CrossText.Service.Helpers;
 using CrossText.Service.MenuStructureLoader;
+using CrossText.Service.Helpers;
 
 namespace CrossText.Service
 {
+    /// <summary>
+    /// The implementation of ICrossTextService
+    /// </summary>
     public class Service : ICrossTextService
     {
+        #region Implemented Methods from ICrossTextService
+        /// <summary>
+        /// Gets the teletext site.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns></returns>
         public string GetTeletextSite(int number)
         {
             string Url = string.Empty;
@@ -40,6 +44,12 @@ namespace CrossText.Service
             }
         }
 
+        /// <summary>
+        /// Gets the teletext sub site.
+        /// </summary>
+        /// <param name="SiteNumber">The site number.</param>
+        /// <param name="subSiteNumber">The sub site number.</param>
+        /// <returns></returns>
         public string GetTeletextSubSite(int SiteNumber, int subSiteNumber)
         {
             try
@@ -56,6 +66,11 @@ namespace CrossText.Service
             }
         }
 
+        /// <summary>
+        /// Gets the teletext structure.
+        /// </summary>
+        /// <param name="SiteNumber">The site number.</param>
+        /// <returns></returns>
         public DataContract.TeletextStructureSite GetTeletextStructure(int SiteNumber)
         {
           TeletextStructureSite siteInfo = new TeletextStructureSite();
@@ -76,6 +91,10 @@ namespace CrossText.Service
           return siteInfo;
         }
 
+        /// <summary>
+        /// Gets the menu structure.
+        /// </summary>
+        /// <returns></returns>
         public DataContract.MenuStructureList GetMenuStructure()
         {
             IMenuStructureLoader loader = new XmlMenuStructureLoader(
@@ -86,5 +105,6 @@ namespace CrossText.Service
 
             return loader.LoadMenuStructures();
         }
+        #endregion
     }
 }

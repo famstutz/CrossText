@@ -1,20 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Configuration;
 
 namespace CrossText.Service.Helpers
 {
+    /// <summary>
+    /// The <see cref="ConfigurationHelper"/> takes care of all configuration stored in Web.Config, User.Config, ...
+    /// </summary>
     public static class ConfigurationHelper
     {
-        #region Members
+        #region Constants
         private const String TELETEXT_STRUCTURE_DEFINITION_KEY = "TeletextStructureDefinition";
         private const String TELETEXT_STRUCTURE_SCHEMA_KEY = "TeletextStructureSchema";
-        private const string TELETEXT_STRUCTURE_SCHEMA_NAMESPACE_KEY = "TeletextStructureSchemaNamespace";
+        private const String TELETEXT_STRUCTURE_SCHEMA_NAMESPACE_KEY = "TeletextStructureSchemaNamespace";
         #endregion
 
         #region Static Public Methods
+        /// <summary>
+        /// Gets the teletext teletext structure definition.
+        /// </summary>
         public static String TeletextTeletextStructureDefinition
         {
             get
@@ -27,6 +30,9 @@ namespace CrossText.Service.Helpers
             }
         }
 
+        /// <summary>
+        /// Gets the teletext teletext structure schema.
+        /// </summary>
         public static String TeletextTeletextStructureSchema
         {
             get
@@ -39,6 +45,9 @@ namespace CrossText.Service.Helpers
             }
         }
 
+        /// <summary>
+        /// Gets the teletext teletext structure schema namespace.
+        /// </summary>
         public static String TeletextTeletextStructureSchemaNamespace
         {
             get

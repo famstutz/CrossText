@@ -1,14 +1,23 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Runtime.Serialization;
 
 namespace CrossText.Service.DataContract
 {
+    /// <summary>
+    /// Represents a collection of <see cref="MenuStructure"/>
+    /// </summary>
     [CollectionDataContract]
     public class MenuStructureList: List<MenuStructure>
     {
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (obj == null)

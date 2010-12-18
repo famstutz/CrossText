@@ -1,15 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Xml;
-using System.Xml.Schema;
 using CrossText.Service.Helpers.Xml;
 
 namespace CrossText.Service.Helpers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class XmlHelper
     {
+        #region Public Static Methods
+        /// <summary>
+        /// Determines whether the given XML file is valid
+        /// </summary>
+        /// <param name="xmlFile">The XML file.</param>
+        /// <param name="schemaFile">The schema file.</param>
+        /// <returns>
+        ///   <c>true</c> if the supplied XML file is valid; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsValidXml(String xmlFile, String schemaFile)
         {
             bool isValid = false;
@@ -25,6 +32,7 @@ namespace CrossText.Service.Helpers
             }
 
             return isValid;
-        }        
+        }
+        #endregion
     }
 }
