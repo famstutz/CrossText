@@ -7,6 +7,9 @@ using System.ServiceModel.Web;
 using System.Text;
 using CrossText.Service.DataContract;
 using System.Configuration;
+using System.Xml;
+using CrossText.Service.Helpers;
+using CrossText.Service.MenuStructureLoader;
 
 namespace CrossText.Service
 {
@@ -27,7 +30,8 @@ namespace CrossText.Service
                 Url = string.Format(ConfigurationManager.AppSettings["BaseUrl"], number, "01");
               }
 
-              return Helper.GetImageFromURL(Url);
+              byte[] image = Helper.GetImageFromURL(Url);
+              return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
             }
             catch (Exception ex)
             {
@@ -74,17 +78,13 @@ namespace CrossText.Service
 
         public DataContract.MenuStructureList GetMenuStructure()
         {
-            MenuStructureList menuList = new MenuStructureList();
-            menuList.Add(new MenuStructure() { SiteNumber = 101, Title = "News" });
-            menuList.Add(new MenuStructure() { SiteNumber = 200, Title = "Sport" });
-            menuList.Add(new MenuStructure() { SiteNumber = 300, Title = "TV/Radio" });
-            menuList.Add(new MenuStructure() { SiteNumber = 400, Title = "Reisen" });
-            menuList.Add(new MenuStructure() { SiteNumber = 500, Title = "Konsum" });
-            menuList.Add(new MenuStructure() { SiteNumber = 600, Title = "Finanzen" });
-            menuList.Add(new MenuStructure() { SiteNumber = 700, Title = "Entertainment" });
-            menuList.Add(new MenuStructure() { SiteNumber = 800, Title = "Freizeit" });
+            IMenuStructureLoader loader = new XmlMenuStructureLoader(
+                AppDomain.CurrentDomain.BaseDirectory + ConfigurationHelper.TeletextTeletextStructureDefinition,
+                AppDomain.CurrentDomain.BaseDirectory + ConfigurationHelper.TeletextTeletextStructureSchema,
+                ConfigurationHelper.TeletextTeletextStructureSchemaNamespace
+                );
 
-            return menuList;
+            return loader.LoadMenuStructures();
         }
     }
 }

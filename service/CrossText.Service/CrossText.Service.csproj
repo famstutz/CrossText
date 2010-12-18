@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service.svc" />
+    <Content Include="TeletextStructure.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -71,6 +74,11 @@
     <Compile Include="DataContract\MenuStructureList.cs" />
     <Compile Include="DataContract\TeletextStructureSite.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Helpers\Xml\XmlValidator.cs" />
+    <Compile Include="MenuStructureLoader\IMenuStructureLoader.cs" />
+    <Compile Include="MenuStructureLoader\XmlMenuStructureLoader.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
@@ -79,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TeletextStructure.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

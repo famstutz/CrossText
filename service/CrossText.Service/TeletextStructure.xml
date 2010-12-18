@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TeletextStructure xmlns="http://tempuri.org/TeletextStructure.xsd">
+  <MenuStructure>
+    <SiteNumber>101</SiteNumber>
+    <Title>News</Title>
+  </MenuStructure>
+  <MenuStructure>
+    <SiteNumber>200</SiteNumber>
+    <Title>Sport</Title>
+  </MenuStructure>
+  <MenuStructure>
+    <SiteNumber>300</SiteNumber>
+    <Title>TV/Radio</Title>
+  </MenuStructure>
+  <MenuStructure>
+    <SiteNumber>400</SiteNumber>
+    <Title>Reisen</Title>
+  </MenuStructure>
+  <MenuStructure>
+    <SiteNumber>500</SiteNumber>
+    <Title>Konsum</Title>
+  </MenuStructure>
+  <MenuStructure>
+    <SiteNumber>600</SiteNumber>
+    <Title>Finanzen</Title>
+  </MenuStructure>
+  <MenuStructure>
+    <SiteNumber>700</SiteNumber>
+    <Title>Entertainment</Title>
+  </MenuStructure>
+  <MenuStructure>
+    <SiteNumber>800</SiteNumber>
+    <Title>Freizeit</Title>
+  </MenuStructure>
+</TeletextStructure>  
