@@ -11,7 +11,10 @@ RegisterEvents
 */
 TeletextApp.prototype.RegisterEvents = function()
 {
-   $("#MenuStructure").click(function()
+    //"this" doesn't work in anonymous functions 
+    var app = this;
+    
+    $("#MenuStructure").click(function()
     {
         this.GetMenuStructure();
     });
@@ -19,7 +22,7 @@ TeletextApp.prototype.RegisterEvents = function()
     $("#BtnLoadPage").click(function()
     {
         var PageNumber = $("#TxtPageNumber").val();
-        ShowPage(PageNumber);
+        app.ShowPage(PageNumber);
     });
 }
 
@@ -36,8 +39,11 @@ GetPage
 */
 TeletextApp.prototype.ShowPage = function(PageNumber)
 {
+    //"this" doesn't work in anonymous functions
+    var app = this;
+    
     var callback = function(Data) {
-        this.SetImageData(Data, "#ImgTeletextPage");
+        app.SetImageData(Data, "#ImgTeletextPage");
     }
     
     this.WebserviceClient.GetPage(PageNumber, callback);

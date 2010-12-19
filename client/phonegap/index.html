@@ -24,6 +24,7 @@
         var client = new TeletextClient(SERVICE_URL)
         var app = new TeletextApp(client);    
         app.RegisterEvents();
+        
         //Load Home Page
         app.ShowPage(100);
         
@@ -40,7 +41,7 @@
         </ul> 
     </div>
     <div>
-        <input type="text" value="500" id="TxtPageNumber" /> 
+        <input type="text" value="100" id="TxtPageNumber" /> 
         <input type="button" value="Load Page" id="BtnLoadPage" />
     </div>
     <div id="Viewport">           
