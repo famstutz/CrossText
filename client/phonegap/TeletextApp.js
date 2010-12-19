@@ -21,8 +21,8 @@ TeletextApp.prototype.RegisterEvents = function()
     
     $("#BtnLoadPage").click(function()
     {
-        var PageNumber = $("#TxtPageNumber").val();
-        app.ShowPage(PageNumber);
+        var pageNumber = $("#TxtPageNumber").val();
+        app.ShowPage(pageNumber);
     });
 
     $("#BtnTestPage").click(function()
@@ -63,8 +63,15 @@ TeletextApp.prototype.AnalyzePage = function(PageNumber)
     //"this" doesn't work in anonymous functions
     var app = this;
 
-    var callback = function(data) {
-	//alert(data);
+    var callback = function(Data) {
+        var SubPageCount = 0;
+        if(Data != null) {
+            SubPageCount = Data.SubSites.length;     
+            /*$.each(Data.SubSites, function(index, value) {
+                SubPageCount++;                
+    	    });*/
+    	}
+        alert(SubPageCount);   
     }
 
     this.WebserviceClient.GetTeletextStructure(PageNumber, callback);
@@ -77,11 +84,11 @@ TeletextApp.prototype.GetMenuStructure = function()
 {
     var callback = function(Data)
     {
-	if(Data != null) {
-	    $.each(Data, function(index, value) {
-		alert(value.Title);
-	    });
-	}
+        if(Data != null) {
+            $.each(Data, function(index, value) {
+                alert(value.Title);
+    	    });
+    	}
     } 
     
     this.WebserviceClient.GetMenuStructure(callback);
