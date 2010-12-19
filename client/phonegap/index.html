@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>CrossText</title>
+    <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="TeletextClient.js"></script>
+    <script type="text/javascript" charset="utf-8" src="TeletextApp.js"></script>
+    <script type="text/javascript" charset="utf-8">
+   
+    
+   
+    $().ready(function()
+    {
+        const SERVICE_URL = "http://service.centro-espanol-zug.ch/Service.svc/";
+        
+        $.ajaxSetup({
+            timeout: 7000
+        });
+        
+        //Setup Teletext App
+        var client = new TeletextClient(SERVICE_URL)
+        var app = new TeletextApp(client);    
+        app.RegisterEvents();
+        //Load Home Page
+        app.ShowPage(100);
+        
+    });
+    
+   
+  </script>
+  </head>
+  <body>
+    <h1>CrossText</h1>
+    <div>
+        <ul> 
+            <li><a id="MenuStructure" href="#">GetMenuStructure</a></li> 
+        </ul> 
+    </div>
+    <div>
+        <input type="text" value="500" id="TxtPageNumber" /> 
+        <input type="button" value="Load Page" id="BtnLoadPage" />
+    </div>
+    <div id="Viewport">           
+        <img width="400" height="276" id="ImgTeletextPage" src="" />
+    </div> 
+  </body>
+</html>
