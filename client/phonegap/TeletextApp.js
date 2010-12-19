@@ -64,7 +64,7 @@ TeletextApp.prototype.AnalyzePage = function(PageNumber)
     var app = this;
 
     var callback = function(data) {
-	alert(data);
+	//alert(data);
     }
 
     this.WebserviceClient.GetTeletextStructure(PageNumber, callback);
@@ -77,9 +77,11 @@ TeletextApp.prototype.GetMenuStructure = function()
 {
     var callback = function(Data)
     {
-        $.each(Data, function(index, value) { 
-            alert(value.Title); 
-        });
+	if(Data != null) {
+	    $.each(Data, function(index, value) {
+		alert(value.Title);
+	    });
+	}
     } 
     
     this.WebserviceClient.GetMenuStructure(callback);
