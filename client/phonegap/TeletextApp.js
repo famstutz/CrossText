@@ -24,6 +24,12 @@ TeletextApp.prototype.RegisterEvents = function()
         var PageNumber = $("#TxtPageNumber").val();
         app.ShowPage(PageNumber);
     });
+
+    $("#BtnTestPage").click(function()
+    {
+        var pageNumber = $("#TxtPageNumber").val();
+        app.AnalyzePage(pageNumber);
+    });
 }
 
 /*
@@ -47,9 +53,23 @@ TeletextApp.prototype.ShowPage = function(PageNumber)
     }
     
     this.WebserviceClient.GetPage(PageNumber, callback);
-}  
+}
 
-    
+/*
+AnalyzePage
+*/
+TeletextApp.prototype.AnalyzePage = function(PageNumber)
+{
+    //"this" doesn't work in anonymous functions
+    var app = this;
+
+    var callback = function(data) {
+	alert(data);
+    }
+
+    this.WebserviceClient.GetTeletextStructure(PageNumber, callback);
+}
+
 /*
 GetMenuStructure
 */
