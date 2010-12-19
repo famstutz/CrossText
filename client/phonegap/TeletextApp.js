@@ -16,7 +16,7 @@ TeletextApp.prototype.RegisterEvents = function()
     
     $("#MenuStructure").click(function()
     {
-        this.GetMenuStructure();
+        app.GetMenuStructure();
     });
     
     $("#BtnLoadPage").click(function()
@@ -64,3 +64,4 @@ TeletextApp.prototype.GetMenuStructure = function()
     
     this.WebserviceClient.GetMenuStructure(callback);
 }
+
