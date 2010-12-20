@@ -71,7 +71,7 @@ TeletextApp.prototype.AnalyzePage = function(PageNumber)
                 SubPageCount++;                
     	    });*/
     	}
-        alert(SubPageCount);   
+        //alert(SubPageCount);   
     }
 
     this.WebserviceClient.GetTeletextStructure(PageNumber, callback);
