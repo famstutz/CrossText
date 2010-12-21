@@ -64,23 +64,6 @@ namespace CrossText.Service.Test
         //
         #endregion
 
-
-        /// <summary>
-        ///A test for UrlFormatter Constructor
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
-        [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        public void UrlFormatterConstructorTest()
-        {
-            UrlFormatter target = new UrlFormatter();
-            Assert.Inconclusive("TODO: Implement code to verify target");
-        }
-
         /// <summary>
         ///A test for FormatTeletextUrl
         ///</summary>
@@ -88,19 +71,15 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void FormatTeletextUrlTest()
         {
-            string baseUrl = string.Empty; // TODO: Initialize to an appropriate value
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            int subSiteNumber = 0; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string baseUrl = "http://www.teletext.ch/pics/SF1/{0}-{1}.gif";
+            int siteNumber = 500;
+            int subSiteNumber = 5;
+            string expected = "http://www.teletext.ch/pics/SF1/500-05.gif";
             string actual;
             actual = UrlFormatter.FormatTeletextUrl(baseUrl, siteNumber, subSiteNumber);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -110,18 +89,14 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void FormatTeletextUrlTest1()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            int subSiteNumber = 0; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            int siteNumber = 500;
+            int subSiteNumber = 5;
+            string expected = "http://www.teletext.ch/pics/SF1/500-05.gif";
             string actual;
             actual = UrlFormatter.FormatTeletextUrl(siteNumber, subSiteNumber);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

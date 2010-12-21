@@ -77,9 +77,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void SerializableDictionaryConstructorTest()
         {
             SerializableDictionaryConstructorTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -99,9 +96,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void GetSchemaTest()
         {
             GetSchemaTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -119,9 +113,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void ReadXmlTest()
         {
             ReadXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -139,9 +130,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void WriteXmlTest()
         {
             WriteXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();

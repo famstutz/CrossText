@@ -69,13 +69,7 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for CheckIfURLExists
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void CheckIfURLExistsTest()
         {
             string BaseURL = "http://www.teletext.ch/pics/SF1/{0}-{1}.gif";
@@ -89,13 +83,7 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for GetBase64DataURI
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void GetBase64DataURITest()
         {
             string mimeType = string.Empty; // TODO: Initialize to an appropriate value
@@ -110,13 +98,7 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for GetImageFromURL
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void GetImageFromURLTest()
         {
             string url = string.Empty; // TODO: Initialize to an appropriate value
@@ -130,14 +112,7 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for byteArrayToImage
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void byteArrayToImageTest()
         {
             byte[] byteArrayIn = null; // TODO: Initialize to an appropriate value
@@ -151,14 +126,7 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for imageToByteArray
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void imageToByteArrayTest()
         {
             Image imageIn = null; // TODO: Initialize to an appropriate value

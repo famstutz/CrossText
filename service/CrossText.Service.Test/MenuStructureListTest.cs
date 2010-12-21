@@ -68,13 +68,7 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for MenuStructureList Constructor
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void MenuStructureListConstructorTest()
         {
             MenuStructureList target = new MenuStructureList();
@@ -84,13 +78,7 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for Equals
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void EqualsTest()
         {
             MenuStructureList target = new MenuStructureList(); // TODO: Initialize to an appropriate value

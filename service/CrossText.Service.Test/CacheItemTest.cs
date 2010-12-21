@@ -70,15 +70,12 @@ namespace CrossText.Service.Test
         ///</summary>
         public void CacheItemConstructorTestHelper<TValue>()
         {
-            TValue value = default(TValue); // TODO: Initialize to an appropriate value
-            CacheItem<TValue> target = new CacheItem<TValue>(value);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            String value = "Test-Value";
+            CacheItem<String> target = new CacheItem<String>(value);
+            Assert.AreEqual(value, target.Value);
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void CacheItemConstructorTest()
         {
             CacheItemConstructorTestHelper<GenericParameterHelper>();
@@ -90,13 +87,10 @@ namespace CrossText.Service.Test
         public void CacheItemConstructorTest1Helper<TValue>()
         {
             CacheItem<TValue> target = new CacheItem<TValue>();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            Assert.IsNotNull(target);
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void CacheItemConstructorTest1()
         {
             CacheItemConstructorTest1Helper<GenericParameterHelper>();
@@ -107,19 +101,15 @@ namespace CrossText.Service.Test
         ///</summary>
         public void CacheTimeTestHelper<TValue>()
         {
-            CacheItem<TValue> target = new CacheItem<TValue>(); // TODO: Initialize to an appropriate value
-            DateTime expected = new DateTime(); // TODO: Initialize to an appropriate value
+            CacheItem<String> target = new CacheItem<String>("Test-Value"); 
+            DateTime expected = new DateTime(); 
             DateTime actual;
             target.CacheTime = expected;
             actual = target.CacheTime;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void CacheTimeTest()
         {
             CacheTimeTestHelper<GenericParameterHelper>();
@@ -130,19 +120,15 @@ namespace CrossText.Service.Test
         ///</summary>
         public void ValueTestHelper<TValue>()
         {
-            CacheItem<TValue> target = new CacheItem<TValue>(); // TODO: Initialize to an appropriate value
-            TValue expected = default(TValue); // TODO: Initialize to an appropriate value
-            TValue actual;
+            CacheItem<String> target = new CacheItem<String>("Test-Value");
+            String expected = "Test-Value";
+            String actual;
             target.Value = expected;
             actual = target.Value;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void ValueTest()
         {
             ValueTestHelper<GenericParameterHelper>();

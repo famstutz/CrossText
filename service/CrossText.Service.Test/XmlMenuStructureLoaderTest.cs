@@ -65,24 +65,68 @@ namespace CrossText.Service.Test
         //
         #endregion
 
+        private string XmlFile
+        {
+            get
+            {
+                return BaseDirectory + "TeletextStructure.xml";
+            }
+        }
+
+        private string BaseDirectory
+        {
+            get
+            {
+                String baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                baseDirectory = !baseDirectory.EndsWith("\\") ? baseDirectory + "\\" : baseDirectory;
+                return baseDirectory;
+            }
+        }
+
+        private string XmlSchemaFile
+        {
+            get
+            {
+                return BaseDirectory + "TeletextStructure.xsd";
+            }
+        }
+
+        private string XmlNamespace
+        {
+            get
+            {
+                return "http://tempuri.org/TeletextStructure.xsd";
+            }
+        }
+
+        private MenuStructureList MenuStructureList
+        {
+            get
+            {
+                return new MenuStructureList() {
+                    new MenuStructure() { SiteNumber = 101, Title = "News" },
+                    new MenuStructure() { SiteNumber = 200, Title = "Sport" },
+                    new MenuStructure() { SiteNumber = 300, Title = "TV/Radio" },
+                    new MenuStructure() { SiteNumber = 400, Title = "Reisen" },
+                    new MenuStructure() { SiteNumber = 500, Title = "Konsum" },
+                    new MenuStructure() { SiteNumber = 600, Title = "Finanzen" },
+                    new MenuStructure() { SiteNumber = 700, Title = "Entertainment" },
+                    new MenuStructure() { SiteNumber = 800, Title = "Freizeit" }
+                };
+            }
+        }
 
         /// <summary>
         ///A test for XmlMenuStructureLoader Constructor
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void XmlMenuStructureLoaderConstructorTest()
         {
-            string teletextStructureXml = string.Empty; // TODO: Initialize to an appropriate value
-            string teletextStructureSchema = string.Empty; // TODO: Initialize to an appropriate value
-            string teletextStructureSchemaNamespace = string.Empty; // TODO: Initialize to an appropriate value
+            string teletextStructureXml = XmlFile;
+            string teletextStructureSchema = XmlSchemaFile;
+            string teletextStructureSchemaNamespace = XmlNamespace;
             XmlMenuStructureLoader target = new XmlMenuStructureLoader(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            Assert.IsNotNull(target);
         }
 
         /// <summary>
@@ -92,111 +136,89 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void LoadMenuStructuresTest()
         {
-            string teletextStructureXml = string.Empty; // TODO: Initialize to an appropriate value
-            string teletextStructureSchema = string.Empty; // TODO: Initialize to an appropriate value
-            string teletextStructureSchemaNamespace = string.Empty; // TODO: Initialize to an appropriate value
-            XmlMenuStructureLoader target = new XmlMenuStructureLoader(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace); // TODO: Initialize to an appropriate value
-            MenuStructureList expected = null; // TODO: Initialize to an appropriate value
+            string teletextStructureXml = XmlFile;
+            string teletextStructureSchema = XmlSchemaFile;
+            string teletextStructureSchemaNamespace = XmlNamespace;
+            XmlMenuStructureLoader target = new XmlMenuStructureLoader(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace);
+            MenuStructureList expected = MenuStructureList;
             MenuStructureList actual;
             actual = target.LoadMenuStructures();
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
         ///A test for SetTeletextStructureXml
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void SetTeletextStructureXmlTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0); // TODO: Initialize to an appropriate value
-            string teletextStructureXml = string.Empty; // TODO: Initialize to an appropriate value
-            string teletextStructureSchema = string.Empty; // TODO: Initialize to an appropriate value
-            string teletextStructureSchemaNamespace = string.Empty; // TODO: Initialize to an appropriate value
+            string teletextStructureXml = XmlFile;
+            string teletextStructureSchema = XmlSchemaFile;
+            string teletextStructureSchemaNamespace = XmlNamespace;
+            XmlMenuStructureLoader xmsl = new XmlMenuStructureLoader(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace);
+            PrivateObject param0 = new PrivateObject(xmsl);
+            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0);
             target.SetTeletextStructureXml(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            Assert.AreEqual(teletextStructureXml, target.TeletextStructureXml);
         }
 
         /// <summary>
         ///A test for TeletextStructureSchema
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void TeletextStructureSchemaTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string teletextStructureXml = XmlFile;
+            string teletextStructureSchema = XmlSchemaFile;
+            string teletextStructureSchemaNamespace = XmlNamespace;
+            XmlMenuStructureLoader xmsl = new XmlMenuStructureLoader(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace);
+            PrivateObject param0 = new PrivateObject(xmsl);
+            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0);
+            string expected = XmlSchemaFile;
             string actual;
             target.TeletextStructureSchema = expected;
             actual = target.TeletextStructureSchema;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
         ///A test for TeletextStructureSchemaNamespace
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void TeletextStructureSchemaNamespaceTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string teletextStructureXml = XmlFile;
+            string teletextStructureSchema = XmlSchemaFile;
+            string teletextStructureSchemaNamespace = XmlNamespace;
+            XmlMenuStructureLoader xmsl = new XmlMenuStructureLoader(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace);
+            PrivateObject param0 = new PrivateObject(xmsl);
+            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0);
+            string expected = XmlNamespace;
             string actual;
             target.TeletextStructureSchemaNamespace = expected;
             actual = target.TeletextStructureSchemaNamespace;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
         ///A test for TeletextStructureXml
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void TeletextStructureXmlTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string teletextStructureXml = XmlFile;
+            string teletextStructureSchema = XmlSchemaFile;
+            string teletextStructureSchemaNamespace = XmlNamespace;
+            XmlMenuStructureLoader xmsl = new XmlMenuStructureLoader(teletextStructureXml, teletextStructureSchema, teletextStructureSchemaNamespace);
+            PrivateObject param0 = new PrivateObject(xmsl);
+            XmlMenuStructureLoader_Accessor target = new XmlMenuStructureLoader_Accessor(param0);
+            string expected = XmlFile;
             string actual;
             target.TeletextStructureXml = expected;
             actual = target.TeletextStructureXml;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

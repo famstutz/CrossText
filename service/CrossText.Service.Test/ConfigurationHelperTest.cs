@@ -70,19 +70,14 @@ namespace CrossText.Service.Test
         ///</summary>
         public void GetSettingTestHelper<T>()
         {
-            string settingKey = string.Empty; // TODO: Initialize to an appropriate value
-            T expected = default(T); // TODO: Initialize to an appropriate value
-            T actual;
-            actual = ConfigurationHelper_Accessor.GetSetting<T>(settingKey);
+            string settingKey = "ImageMimeType";
+            string expected = "image/gif";
+            string actual;
+            actual = ConfigurationHelper_Accessor.GetSetting<string>(settingKey);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void GetSettingTest()
         {
             GetSettingTestHelper<GenericParameterHelper>();
@@ -91,103 +86,73 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for ImageMimeType
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void ImageMimeTypeTest()
         {
             string actual;
             actual = ConfigurationHelper.ImageMimeType;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(actual); 
+            Assert.IsInstanceOfType(actual, typeof(string));
         }
 
         /// <summary>
         ///A test for SerializedSiteCacheFile
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void SerializedSiteCacheFileTest()
         {
             string actual;
             actual = ConfigurationHelper.SerializedSiteCacheFile;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(actual);
+            Assert.IsInstanceOfType(actual, typeof(string));
         }
 
         /// <summary>
         ///A test for TeletextBaseUrl
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void TeletextBaseUrlTest()
         {
             string actual;
             actual = ConfigurationHelper.TeletextBaseUrl;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(actual);
+            Assert.IsInstanceOfType(actual, typeof(string));
         }
 
         /// <summary>
         ///A test for TeletextStructureDefinition
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void TeletextStructureDefinitionTest()
         {
             string actual;
             actual = ConfigurationHelper.TeletextStructureDefinition;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(actual);
+            Assert.IsInstanceOfType(actual, typeof(string));
         }
 
         /// <summary>
         ///A test for TeletextStructureSchema
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void TeletextStructureSchemaTest()
         {
             string actual;
             actual = ConfigurationHelper.TeletextStructureSchema;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(actual);
+            Assert.IsInstanceOfType(actual, typeof(string));
         }
 
         /// <summary>
         ///A test for TeletextStructureSchemaNamespace
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void TeletextStructureSchemaNamespaceTest()
         {
             string actual;
             actual = ConfigurationHelper.TeletextStructureSchemaNamespace;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(actual);
+            Assert.IsInstanceOfType(actual, typeof(string));
         }
     }
 }

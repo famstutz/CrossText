@@ -78,9 +78,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void SerializableSiteCacheConstructorTest()
         {
             SerializableSiteCacheConstructorTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -98,9 +95,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void ClearTest()
         {
             ClearTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -122,9 +116,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void ContainsKeyTest()
         {
             ContainsKeyTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -142,9 +133,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void DisposeTest()
         {
             DisposeTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -166,9 +154,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void GetTest()
         {
             GetTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -190,10 +175,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void GetItemTest()
         {
             GetItemTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -213,9 +194,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void InsertTest()
         {
             InsertTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -237,9 +215,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void IsExpiredTest()
         {
             IsExpiredTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -257,10 +232,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void ReadSerializedXmlTest()
         {
             ReadSerializedXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -279,9 +250,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void RemoveTest()
         {
             RemoveTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -299,10 +267,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void WriteSerializedXmlTest()
         {
             WriteSerializedXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -321,9 +285,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void CountTest()
         {
             CountTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -345,10 +306,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void DictionaryTest()
         {
             DictionaryTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -370,9 +327,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void ExpirySpanTest()
         {
             ExpirySpanTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -391,9 +345,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void KeysTest()
         {
             KeysTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -415,9 +366,6 @@ namespace CrossText.Service.Test
         }
 
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void XmlFilePathTest()
         {
             XmlFilePathTestHelper<GenericParameterHelper, GenericParameterHelper>();

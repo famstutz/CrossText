@@ -16,7 +16,11 @@ namespace CrossText.Service.Helpers
             get
             {
                 String baseDirectory = AppDomain.CurrentDomain.RelativeSearchPath;
+                if (baseDirectory == null)
+                    baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
                 baseDirectory = !baseDirectory.EndsWith("\\") ? baseDirectory + "\\" : baseDirectory;
+
                 return baseDirectory;
             }
         }

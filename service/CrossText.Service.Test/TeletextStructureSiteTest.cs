@@ -71,9 +71,6 @@ namespace CrossText.Service.Test
         ///A test for TeletextStructureSite Constructor
         ///</summary>
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void TeletextStructureSiteConstructorTest()
         {
             int siteNumber = 241;
@@ -86,9 +83,6 @@ namespace CrossText.Service.Test
         ///A test for SiteNumber
         ///</summary>
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void SiteNumberTest()
         {
             string Url = string.Format("http://www.teletext.ch/pics/SF1/{0}-{1}.gif", 100, "01");
@@ -107,9 +101,6 @@ namespace CrossText.Service.Test
         ///A test for SubSites
         ///</summary>
         [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
         public void SubSitesTest()
         {
           string Url = string.Format("http://www.teletext.ch/pics/SF1/{0}-{1}.gif", 256, "02");

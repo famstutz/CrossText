@@ -8,7 +8,7 @@ namespace CrossText.Service.Helpers
     /// <summary>
     /// Provides functionality to correctly format the Url
     /// </summary>
-    public class UrlFormatter
+    public static class UrlFormatter
     {
         #region Public static methods
         /// <summary>
