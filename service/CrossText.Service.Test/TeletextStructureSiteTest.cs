@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace CrossText.Service.Test
 {
@@ -69,62 +70,56 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for TeletextStructureSite Constructor
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
         public void TeletextStructureSiteConstructorTest()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
+            int siteNumber = 241;
             TeletextStructureSite target = new TeletextStructureSite(siteNumber);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+
+            Assert.AreEqual(target.SiteNumber, 241);
         }
 
         /// <summary>
         ///A test for SiteNumber
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
         public void SiteNumberTest()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.SiteNumber = expected;
-            actual = target.SiteNumber;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            string Url = string.Format("http://www.teletext.ch/pics/SF1/{0}-{1}.gif", 100, "01");
+
+            // get the Byte Array first and convert it to Base64Data Object
+            Byte[] image1 = Helper.GetImageFromURL(Url);
+            string site1 = Helper.GetBase64DataURI("image/gif", image1);
+
+            Byte[] image2 = Helper.GetImageFromURL(Url);
+            string site2 = Helper.GetBase64DataURI("image/gif", image2);
+
+            Assert.AreEqual(site1, site2);
         }
 
         /// <summary>
         ///A test for SubSites
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
         public void SubSitesTest()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
-            List<int> expected = null; // TODO: Initialize to an appropriate value
-            List<int> actual;
-            target.SubSites = expected;
-            actual = target.SubSites;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+          string Url = string.Format("http://www.teletext.ch/pics/SF1/{0}-{1}.gif", 256, "02");
+
+          // get the Byte Array first and convert it to Base64Data Object
+          Byte[] image1 = Helper.GetImageFromURL(Url);
+          string site1 = Helper.GetBase64DataURI("image/gif", image1);
+
+          Byte[] image2 = Helper.GetImageFromURL(Url);
+          string site2 = Helper.GetBase64DataURI("image/gif", image2);
         }
     }
 }

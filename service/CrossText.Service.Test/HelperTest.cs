@@ -78,12 +78,12 @@ namespace CrossText.Service.Test
         [UrlToTest("http://localhost:1042/")]
         public void CheckIfURLExistsTest()
         {
-            Uri url = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = Helper.CheckIfURLExists(url);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            string BaseURL = "http://www.teletext.ch/pics/SF1/{0}-{1}.gif";
+
+            Uri url1 = new Uri(string.Format(BaseURL,"241","00"));
+            bool expected1 = true;
+            bool actual1 = Helper.CheckIfURLExists(url1);
+            Assert.AreEqual(expected1, actual1);
         }
 
         /// <summary>
