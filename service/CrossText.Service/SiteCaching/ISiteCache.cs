@@ -23,6 +23,14 @@ namespace CrossText.Service.SiteCaching
         List<TKey> Keys { get; }
 
         /// <summary>
+        /// Gets or sets the expiry span.
+        /// </summary>
+        /// <value>
+        /// The expiry span.
+        /// </value>
+        TimeSpan ExpirySpan { get; set; }
+
+        /// <summary>
         /// Clears this instance.
         /// </summary>
         void Clear();
@@ -35,6 +43,15 @@ namespace CrossText.Service.SiteCaching
         ///   <c>true</c> if the specified key contains key; otherwise, <c>false</c>.
         /// </returns>
         bool ContainsKey(TKey key);
+
+        /// <summary>
+        /// Determines whether the specified key is expired.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified key is expired; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsExpired(TKey key);
 
         /// <summary>
         /// Gets the specified key.

@@ -72,28 +72,10 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void IsValidXmlTest()
-        {
-            string xmlFile = string.Empty; // TODO: Initialize to an appropriate value
-            string schemaFile = string.Empty; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = XmlHelper.IsValidXml(xmlFile, schemaFile);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for IsValidXml
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
-        [TestMethod()]
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void IsValidXmlTest1()
+        public void IsValidXmlTest()
         {
             string xmlFile = string.Empty; // TODO: Initialize to an appropriate value
             string schemaFile = string.Empty; // TODO: Initialize to an appropriate value

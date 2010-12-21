@@ -71,7 +71,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\TeletextHelper.cs" />
+    <Compile Include="Helpers\EnvironmentHelper.cs" />
+    <Compile Include="Helpers\UrlFormatter.cs" />
+    <Compile Include="SiteCaching\CacheItem.cs" />
     <Compile Include="SiteCaching\ISiteCache.cs" />
     <Compile Include="DataContract\FaultContract.cs" />
     <Compile Include="DataContract\MenuStructure.cs" />

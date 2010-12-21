@@ -160,6 +160,29 @@ namespace CrossText.Service.Test
         }
 
         /// <summary>
+        ///A test for IsExpired
+        ///</summary>
+        public void IsExpiredTestHelper<TKey, TValue>()
+        {
+            ISiteCache<TKey, TValue> target = CreateISiteCache<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            TKey key = default(TKey); // TODO: Initialize to an appropriate value
+            bool expected = false; // TODO: Initialize to an appropriate value
+            bool actual;
+            actual = target.IsExpired(key);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void IsExpiredTest()
+        {
+            IsExpiredTestHelper<GenericParameterHelper, GenericParameterHelper>();
+        }
+
+        /// <summary>
         ///A test for Remove
         ///</summary>
         public void RemoveTestHelper<TKey, TValue>()
@@ -197,6 +220,29 @@ namespace CrossText.Service.Test
         public void CountTest()
         {
             CountTestHelper<GenericParameterHelper, GenericParameterHelper>();
+        }
+
+        /// <summary>
+        ///A test for ExpirySpan
+        ///</summary>
+        public void ExpirySpanTestHelper<TKey, TValue>()
+        {
+            ISiteCache<TKey, TValue> target = CreateISiteCache<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            TimeSpan expected = new TimeSpan(); // TODO: Initialize to an appropriate value
+            TimeSpan actual;
+            target.ExpirySpan = expected;
+            actual = target.ExpirySpan;
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void ExpirySpanTest()
+        {
+            ExpirySpanTestHelper<GenericParameterHelper, GenericParameterHelper>();
         }
 
         /// <summary>

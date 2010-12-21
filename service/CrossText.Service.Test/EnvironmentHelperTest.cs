@@ -1,20 +1,18 @@
-﻿using CrossText.Service.Serialization;
+﻿using CrossText.Service.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace CrossText.Service.Test
 {
     
     
     /// <summary>
-    ///This is a test class for IXmlSerializableTest and is intended
-    ///to contain all IXmlSerializableTest Unit Tests
+    ///This is a test class for EnvironmentHelperTest and is intended
+    ///to contain all EnvironmentHelperTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class IXmlSerializableTest
+    public class EnvironmentHelperTest
     {
 
 
@@ -67,15 +65,8 @@ namespace CrossText.Service.Test
         #endregion
 
 
-        internal virtual IXmlSerializable CreateIXmlSerializable()
-        {
-            // TODO: Instantiate an appropriate concrete class.
-            IXmlSerializable target = null;
-            return target;
-        }
-
         /// <summary>
-        ///A test for ReadXml
+        ///A test for ExecutionDirectory
         ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
@@ -84,30 +75,11 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void ReadXmlTest()
+        public void ExecutionDirectoryTest()
         {
-            IXmlSerializable target = CreateIXmlSerializable(); // TODO: Initialize to an appropriate value
-            XmlReader reader = null; // TODO: Initialize to an appropriate value
-            target.ReadXml(reader);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for WriteXml
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
-        [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        public void WriteXmlTest()
-        {
-            IXmlSerializable target = CreateIXmlSerializable(); // TODO: Initialize to an appropriate value
-            XmlWriter writer = null; // TODO: Initialize to an appropriate value
-            target.WriteXml(writer);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            string actual;
+            actual = EnvironmentHelper.ExecutionDirectory;
+            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

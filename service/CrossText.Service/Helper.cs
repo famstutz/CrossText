@@ -67,7 +67,5 @@ namespace CrossText.Service
             Image returnImage = Image.FromStream(ms);
             return returnImage;
         }
-
-
     }
 }

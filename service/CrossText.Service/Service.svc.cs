@@ -5,6 +5,7 @@ using System.ServiceModel.Web;
 using CrossText.Service.DataContract;
 using CrossText.Service.MenuStructureLoader;
 using CrossText.Service.Helpers;
+using CrossText.Service.SiteCaching;
 using System.Collections;
 using System.Xml;
 
@@ -14,7 +15,7 @@ namespace CrossText.Service
     /// The implementation of ICrossTextService
     /// </summary>
     public class Service : ICrossTextService
-    {
+    {   
         #region Implemented Methods from ICrossTextService
         /// <summary>
         /// Gets the teletext site.
@@ -28,21 +29,34 @@ namespace CrossText.Service
             try
             {
                 // Check first if URL with 00 does exists
-                Url = string.Format(ConfigurationHelper.TeletextBaseUrl, number, "00");
+                Url = UrlFormatter.FormatTeletextUrl(number, 0);
 
                 if (!Helper.CheckIfURLExists(new Uri(Url)))
                 {
                     // Get the Image
-                    Url = string.Format(ConfigurationHelper.TeletextBaseUrl, number, "01");
+                    Url = UrlFormatter.FormatTeletextUrl(number, 1);
                 }
 
-                byte[] image = Helper.GetImageFromURL(Url);
-                return Helper.GetBase64DataURI(ConfigurationHelper.ImageMimeType, image);
+                string value;
+                using (var cache = new SerializableSiteCache<string, string>(EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.SerializedSiteCacheFile))
+                {
+                    // Is image in cache and not expired?
+                    if (cache.ContainsKey(Url))
+                        return cache.Get(Url);
+
+                    byte[] image = Helper.GetImageFromURL(Url);
+                    value = Helper.GetBase64DataURI(ConfigurationHelper.ImageMimeType, image);
+
+                    // Add to cache
+                    cache.Insert(Url, value);
+                }
+
+                return value;
             }
             catch (Exception ex)
             {
                 FaultContract fault = new FaultContract();
-                throw new FaultException<FaultContract>(fault, new FaultReason(string.Format("Teletext Site couldn't be found, {0}", Url)));
+                throw new FaultException<FaultContract>(fault, new FaultReason(string.Format("Teletext Site could not be found, {0}", Url)));
             }
         }
 
@@ -53,13 +67,26 @@ namespace CrossText.Service
         /// <param name="subSiteNumber">The sub site number.</param>
         /// <returns></returns>
         public string GetTeletextSubSite(int SiteNumber, int subSiteNumber)
-        {
+        {            
             try
             {
                 // Get the Image
-                string Url = string.Format(ConfigurationHelper.TeletextBaseUrl, SiteNumber, string.Format("{0:00}", subSiteNumber));
-                byte[] image = Helper.GetImageFromURL(Url);
-                return Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
+                string Url = UrlFormatter.FormatTeletextUrl(SiteNumber, subSiteNumber);
+
+                string value;
+                using (var cache = new SerializableSiteCache<string, string>(EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.SerializedSiteCacheFile))
+                {
+                    // Is image in cache and not expired?
+                    if (cache.ContainsKey(Url))
+                        return cache.Get(Url);
+
+                    byte[] image = Helper.GetImageFromURL(Url);
+                    value = Helper.GetBase64DataURI(ConfigurationManager.AppSettings["ImageMimeType"], image);
+
+                    // Add to cache
+                    cache.Insert(Url, value);
+                }
+                return value;
             }
             catch (Exception ex)
             {
@@ -80,7 +107,7 @@ namespace CrossText.Service
             // check if Subsites exists
             for (int indexSite = 0; indexSite < 10; indexSite++)
             {
-                string Url = string.Format(ConfigurationHelper.TeletextBaseUrl, SiteNumber, string.Format("{0:00}", indexSite));
+                string Url = UrlFormatter.FormatTeletextUrl(SiteNumber, indexSite);
                 if (Helper.CheckIfURLExists(new Uri(Url)))
                 {
                     siteInfo.SubSites.Add(indexSite);
@@ -96,12 +123,9 @@ namespace CrossText.Service
         /// <returns></returns>
         public DataContract.MenuStructureList GetMenuStructure()
         {
-            String baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            baseDirectory = !baseDirectory.EndsWith("\\") ? baseDirectory + "\\" : baseDirectory;
-
             IMenuStructureLoader loader = new XmlMenuStructureLoader(
-                baseDirectory + ConfigurationHelper.TeletextStructureDefinition,
-                baseDirectory + ConfigurationHelper.TeletextStructureSchema,
+                EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.TeletextStructureDefinition,
+                EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.TeletextStructureSchema,
                 ConfigurationHelper.TeletextStructureSchemaNamespace
                 );
 

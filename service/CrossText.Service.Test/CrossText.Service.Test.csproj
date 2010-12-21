@@ -63,13 +63,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheItemTest.cs" />
     <Compile Include="ConfigurationHelperTest.cs" />
+    <Compile Include="EnvironmentHelperTest.cs" />
     <Compile Include="FaultContractTest.cs" />
     <Compile Include="HelperTest.cs" />
     <Compile Include="ICrossTextServiceTest.cs" />
     <Compile Include="IMenuStructureLoaderTest.cs" />
     <Compile Include="ISiteCacheTest.cs" />
-    <Compile Include="IXmlSerializableTest.cs" />
     <Compile Include="MenuStructureListTest.cs" />
     <Compile Include="MenuStructureTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="SerializableSiteCacheTest.cs" />
     <Compile Include="ServiceTest.cs" />
     <Compile Include="TeletextStructureSiteTest.cs" />
+    <Compile Include="UrlFormatterTest.cs" />
     <Compile Include="XmlHelperTest.cs" />
     <Compile Include="XmlMenuStructureLoaderTest.cs" />
     <Compile Include="XmlValidatorTest.cs" />

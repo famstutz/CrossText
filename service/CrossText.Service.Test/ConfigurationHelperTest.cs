@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using System.Configuration;
 
 namespace CrossText.Service.Test
 {
@@ -71,78 +70,6 @@ namespace CrossText.Service.Test
         ///</summary>
         public void GetSettingTestHelper<T>()
         {
-            string settingKey = "ImageMimeType";
-            string expected = ConfigurationManager.AppSettings["ImageMimeType"];
-            T actual = ConfigurationHelper_Accessor.GetSetting<T>(settingKey);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod()]
-        public void GetSettingTest()
-        {
-            GetSettingTestHelper<string>();
-        }
-
-        /// <summary>
-        ///A test for ImageMimeType
-        ///</summary>
-        [TestMethod()]
-        public void ImageMimeTypeTest()
-        {
-            string expected = ConfigurationManager.AppSettings["ImageMimeType"];
-            string actual = ConfigurationHelper.ImageMimeType;
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        ///A test for TeletextBaseUrl
-        ///</summary>
-        [TestMethod()]
-        public void TeletextBaseUrlTest()
-        {
-            string expected = ConfigurationManager.AppSettings["TeletextBaseUrl"];
-            string actual = ConfigurationHelper.TeletextBaseUrl;
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        ///A test for TeletextTeletextStructureDefinition
-        ///</summary>
-        [TestMethod()]
-        public void TeletextTeletextStructureDefinitionTest()
-        {
-            string expected = ConfigurationManager.AppSettings["TeletextStructureDefinition"];
-            string actual = ConfigurationHelper.TeletextStructureDefinition;
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        ///A test for TeletextTeletextStructureSchema
-        ///</summary>
-        [TestMethod()]
-        public void TeletextTeletextStructureSchemaTest()
-        {
-            string expected = ConfigurationManager.AppSettings["TeletextStructureSchema"];
-            string actual = ConfigurationHelper.TeletextStructureSchema;
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        ///A test for TeletextTeletextStructureSchemaNamespace
-        ///</summary>
-        [TestMethod()]
-        public void TeletextTeletextStructureSchemaNamespaceTest()
-        {
-            string expected = ConfigurationManager.AppSettings["TeletextStructureSchemaNamespace"];
-            string actual = ConfigurationHelper.TeletextStructureSchemaNamespace;
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        ///A test for GetSetting
-        ///</summary>
-        public void GetSettingTest1Helper<T>()
-        {
             string settingKey = string.Empty; // TODO: Initialize to an appropriate value
             T expected = default(T); // TODO: Initialize to an appropriate value
             T actual;
@@ -156,9 +83,9 @@ namespace CrossText.Service.Test
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
         [DeploymentItem("CrossText.Service.dll")]
-        public void GetSettingTest1()
+        public void GetSettingTest()
         {
-            GetSettingTest1Helper<GenericParameterHelper>();
+            GetSettingTestHelper<GenericParameterHelper>();
         }
 
         /// <summary>
@@ -171,10 +98,27 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void ImageMimeTypeTest1()
+        public void ImageMimeTypeTest()
         {
             string actual;
             actual = ConfigurationHelper.ImageMimeType;
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for SerializedSiteCacheFile
+        ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void SerializedSiteCacheFileTest()
+        {
+            string actual;
+            actual = ConfigurationHelper.SerializedSiteCacheFile;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -188,7 +132,7 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void TeletextBaseUrlTest1()
+        public void TeletextBaseUrlTest()
         {
             string actual;
             actual = ConfigurationHelper.TeletextBaseUrl;

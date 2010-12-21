@@ -4,27 +4,18 @@ using System.Linq;
 using System.Web;
 using CrossText.Service.Serialization;
 using System.Xml.Serialization;
+using System.Xml;
+using System.IO;
 
 namespace CrossText.Service.SiteCaching
 {
     /// <summary>
-    /// 
+    /// Serializable Cache for SiteCache-items
     /// </summary>
     /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
-    public sealed class SerializableSiteCache<TKey, TValue> : ISiteCache<TKey, TValue>, IXmlSerializable
+    public sealed class SerializableSiteCache<TKey, TValue> : ISiteCache<TKey, TValue>, IDisposable
     {
-        #region Member variables
-        /// <summary>
-        /// The singleton instance of this class
-        /// </summary>
-        private static SerializableSiteCache<TKey, TValue> instance;
-        /// <summary>
-        /// The padlock to determine locking status
-        /// </summary>
-        private static readonly object padlock = new object();
-        #endregion 
-
         #region Private properties
         /// <summary>
         /// Gets or sets the dictionary.
@@ -32,38 +23,56 @@ namespace CrossText.Service.SiteCaching
         /// <value>
         /// The dictionary.
         /// </value>
-        private SerializableDictionary<TKey, TValue> Dictionary
+        private SerializableDictionary<TKey, CacheItem<TValue>> Dictionary
         {
             get;
             set;
         }
         #endregion
 
-        #region Singleton
+        #region Public properties
         /// <summary>
-        /// Prevents a default instance of the <see cref="SerializableSiteCache&lt;TKey, TValue&gt;"/> class from being created.
+        /// Gets or sets the XML file path.
         /// </summary>
-        private SerializableSiteCache()
+        /// <value>
+        /// The XML file path.
+        /// </value>
+        public String XmlFilePath
         {
-            if (Dictionary == null)
-                this.Clear();
+            get;
+            set;
         }
+        #endregion
 
+        #region Implemented Properties from ISiteCache<TKey, TValue>
         /// <summary>
-        /// Gets the instance.
+        /// Gets or sets the expiry span.
         /// </summary>
-        public static SerializableSiteCache<TKey, TValue> Instance
+        /// <value>
+        /// The expiry span.
+        /// </value>
+        public TimeSpan ExpirySpan
         {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new SerializableSiteCache<TKey, TValue>();
+            get;
+            set;
+        }
+        #endregion
 
-                    return instance;
-                }
-            }
+        #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializableSiteCache&lt;TKey, TValue&gt;"/> class.
+        /// </summary>
+        public SerializableSiteCache(String xmlFilePath)
+        {
+            Dictionary = new SerializableDictionary<TKey, CacheItem<TValue>>();
+
+            XmlFilePath = xmlFilePath;
+
+            if (File.Exists(XmlFilePath))
+                ReadSerializedXml();
+            
+            if (ExpirySpan == null)
+                new TimeSpan(0, 1, 0, 0, 0); // Initialize an the expiry timespan of 1 hour
         }
         #endregion
 
@@ -73,7 +82,7 @@ namespace CrossText.Service.SiteCaching
         /// </summary>
         public void Clear()
         {
-            Dictionary = new SerializableDictionary<TKey, TValue>();
+            Dictionary = new SerializableDictionary<TKey, CacheItem<TValue>>();
         }
 
         /// <summary>
@@ -86,16 +95,10 @@ namespace CrossText.Service.SiteCaching
             if (!ContainsKey(key))
                 throw new ApplicationException(String.Format("Cache does not contain key '{0}'", key.ToString()));
 
-            TValue value;
-            try
-            {
-                Dictionary.TryGetValue(key, out value);
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException(String.Format("Could not extract value of key '{0}' from cache", key.ToString()), ex);
-            }
-            return value;
+            if (IsExpired(key))
+                throw new ApplicationException(String.Format("Value of key '{0}' is expired", key));
+
+            return GetItem(key).Value;
         }
 
         /// <summary>
@@ -105,7 +108,11 @@ namespace CrossText.Service.SiteCaching
         /// <param name="value">The value.</param>
         public void Insert(TKey key, TValue value)
         {
-            Dictionary.Add(key, value);
+            // If the current key is already expired, remove it from the cache
+            if (ContainsKey(key) || IsExpired(key))
+                Dictionary.Remove(key);
+
+            Dictionary.Add(key, new CacheItem<TValue>(value));
         }
 
         /// <summary>
@@ -124,10 +131,13 @@ namespace CrossText.Service.SiteCaching
         {
             get
             {
-                return Dictionary.Count;
+                return Dictionary.Values.Count;
             }
         }
 
+        /// <summary>
+        /// Gets the keys.
+        /// </summary>
         public List<TKey> Keys
         {
             get
@@ -145,35 +155,96 @@ namespace CrossText.Service.SiteCaching
         /// </returns>
         public bool ContainsKey(TKey key)
         {
-            return Dictionary.ContainsKey(key);
+            if (!Dictionary.ContainsKey(key))
+                return false;
+            return !IsExpired(key);
+        }
+
+        /// <summary>
+        /// Determines whether the specified key is expired.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified key is expired; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsExpired(TKey key)
+        {
+            if (!Dictionary.ContainsKey(key))
+                return false;
+
+            CacheItem<TValue> item = GetItem(key);
+            if ((item.CacheTime + ExpirySpan) > DateTime.Now)
+                return true;
+            return false;
         }
         #endregion
 
-        #region Implemented Methods from IXmlSeralizable
+        #region Private Methods
         /// <summary>
-        /// Gets the schema.
+        /// Gets the item.
         /// </summary>
-        public System.Xml.Schema.XmlSchema GetSchema()
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
+        private CacheItem<TValue> GetItem(TKey key)
         {
-            return null;
+            CacheItem<TValue> value;
+            try
+            {
+                Dictionary.TryGetValue(key, out value);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Could not extract value of key '{0}' from cache", key.ToString()), ex);
+            }
+            return value;
         }
 
         /// <summary>
-        /// Generates an object from its XML representation.
+        /// Writes the serialized XML.
         /// </summary>
-        /// <param name="reader">The <see cref="T:System.Xml.XmlReader"/> stream from which the object is deserialized.</param>
-        public void ReadXml(System.Xml.XmlReader reader)
+        private void WriteSerializedXml()
         {
-            Dictionary.ReadXml(reader);
+            try
+            {
+                XmlWriter writer = XmlWriter.Create(XmlFilePath);
+                Dictionary.WriteXml(writer);
+                writer.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Could not write to XML-file '{0}'", XmlFilePath), ex);
+            }
         }
 
         /// <summary>
-        /// Converts an object into its XML representation.
+        /// Reads the serialized XML.
         /// </summary>
-        /// <param name="writer">The <see cref="T:System.Xml.XmlWriter"/> stream to which the object is serialized.</param>
-        public void WriteXml(System.Xml.XmlWriter writer)
+        /// <returns>The loaded Dictionary</returns>
+        private void ReadSerializedXml()
         {
-            Dictionary.WriteXml(writer);
+            if (!File.Exists(XmlFilePath))
+                throw new ApplicationException(String.Format("Supplied XML-file '{0}' does not exist", XmlFilePath));
+
+            try
+            {
+                XmlReader reader = XmlReader.Create(XmlFilePath);
+                Dictionary.ReadXml(reader);
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(String.Format("Could not load from XML-file '{0}'", XmlFilePath), ex);
+            }
+        }
+        #endregion
+
+        #region Implemented Methods from IDisposable
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            WriteSerializedXml();
         }
         #endregion
     }

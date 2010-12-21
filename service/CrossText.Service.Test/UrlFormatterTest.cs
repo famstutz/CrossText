@@ -1,19 +1,18 @@
-﻿using CrossText.Service.DataContract;
+﻿using CrossText.Service.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using System.Collections.Generic;
 
 namespace CrossText.Service.Test
 {
     
     
     /// <summary>
-    ///This is a test class for TeletextStructureSiteTest and is intended
-    ///to contain all TeletextStructureSiteTest Unit Tests
+    ///This is a test class for UrlFormatterTest and is intended
+    ///to contain all UrlFormatterTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class TeletextStructureSiteTest
+    public class UrlFormatterTest
     {
 
 
@@ -67,7 +66,7 @@ namespace CrossText.Service.Test
 
 
         /// <summary>
-        ///A test for TeletextStructureSite Constructor
+        ///A test for UrlFormatter Constructor
         ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
@@ -76,15 +75,14 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void TeletextStructureSiteConstructorTest()
+        public void UrlFormatterConstructorTest()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber);
+            UrlFormatter target = new UrlFormatter();
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
         /// <summary>
-        ///A test for SiteNumber
+        ///A test for FormatTeletextUrl
         ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
@@ -93,20 +91,20 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void SiteNumberTest()
+        public void FormatTeletextUrlTest()
         {
+            string baseUrl = string.Empty; // TODO: Initialize to an appropriate value
             int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.SiteNumber = expected;
-            actual = target.SiteNumber;
+            int subSiteNumber = 0; // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string actual;
+            actual = UrlFormatter.FormatTeletextUrl(baseUrl, siteNumber, subSiteNumber);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for SubSites
+        ///A test for FormatTeletextUrl
         ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
@@ -115,14 +113,13 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void SubSitesTest()
+        public void FormatTeletextUrlTest1()
         {
             int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
-            List<int> expected = null; // TODO: Initialize to an appropriate value
-            List<int> actual;
-            target.SubSites = expected;
-            actual = target.SubSites;
+            int subSiteNumber = 0; // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string actual;
+            actual = UrlFormatter.FormatTeletextUrl(siteNumber, subSiteNumber);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }

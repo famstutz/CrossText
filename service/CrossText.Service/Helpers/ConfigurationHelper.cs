@@ -14,6 +14,7 @@ namespace CrossText.Service.Helpers
         private const String TELETEXT_STRUCTURE_SCHEMA_NAMESPACE_KEY = "TeletextStructureSchemaNamespace";
         private const String TELETEXT_BASE_URL = "TeletextBaseUrl";
         private const String IMAGE_MIME_TYPE = "ImageMimeType";
+        private const String SERIALIZED_SITE_CACHE_FILE = "SerializedSiteCacheFile";
         #endregion
 
         #region Static Public Methods
@@ -61,6 +62,12 @@ namespace CrossText.Service.Helpers
             }
         }
 
+        /// <summary>
+        /// Gets the type of the image MIME.
+        /// </summary>
+        /// <value>
+        /// The type of the image MIME.
+        /// </value>
         public static String ImageMimeType
         {
             get
@@ -69,6 +76,16 @@ namespace CrossText.Service.Helpers
             }
         }
 
+        /// <summary>
+        /// Gets the serialized site cache.
+        /// </summary>
+        public static String SerializedSiteCacheFile
+        {
+            get
+            {
+                return GetSetting<String>(SERIALIZED_SITE_CACHE_FILE);
+            }
+        }
 
         /// <summary>
         /// Gets the setting.

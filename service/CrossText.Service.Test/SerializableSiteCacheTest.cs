@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using System.Xml;
 using CrossText.Service.Serialization;
 using System.Collections.Generic;
 
@@ -73,7 +72,8 @@ namespace CrossText.Service.Test
         ///</summary>
         public void SerializableSiteCacheConstructorTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>();
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
@@ -81,7 +81,6 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        [DeploymentItem("CrossText.Service.dll")]
         public void SerializableSiteCacheConstructorTest()
         {
             SerializableSiteCacheConstructorTestHelper<GenericParameterHelper, GenericParameterHelper>();
@@ -92,7 +91,8 @@ namespace CrossText.Service.Test
         ///</summary>
         public void ClearTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
             target.Clear();
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
@@ -111,7 +111,8 @@ namespace CrossText.Service.Test
         ///</summary>
         public void ContainsKeyTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
             TKey key = default(TKey); // TODO: Initialize to an appropriate value
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
@@ -130,11 +131,32 @@ namespace CrossText.Service.Test
         }
 
         /// <summary>
+        ///A test for Dispose
+        ///</summary>
+        public void DisposeTestHelper<TKey, TValue>()
+        {
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
+            target.Dispose();
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void DisposeTest()
+        {
+            DisposeTestHelper<GenericParameterHelper, GenericParameterHelper>();
+        }
+
+        /// <summary>
         ///A test for Get
         ///</summary>
         public void GetTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
             TKey key = default(TKey); // TODO: Initialize to an appropriate value
             TValue expected = default(TValue); // TODO: Initialize to an appropriate value
             TValue actual;
@@ -153,11 +175,37 @@ namespace CrossText.Service.Test
         }
 
         /// <summary>
+        ///A test for GetItem
+        ///</summary>
+        public void GetItemTestHelper<TKey, TValue>()
+        {
+            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(param0); // TODO: Initialize to an appropriate value
+            TKey key = default(TKey); // TODO: Initialize to an appropriate value
+            CacheItem<TValue> expected = null; // TODO: Initialize to an appropriate value
+            CacheItem<TValue> actual;
+            actual = target.GetItem(key);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        [DeploymentItem("CrossText.Service.dll")]
+        public void GetItemTest()
+        {
+            GetItemTestHelper<GenericParameterHelper, GenericParameterHelper>();
+        }
+
+        /// <summary>
         ///A test for Insert
         ///</summary>
         public void InsertTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
             TKey key = default(TKey); // TODO: Initialize to an appropriate value
             TValue value = default(TValue); // TODO: Initialize to an appropriate value
             target.Insert(key, value);
@@ -174,13 +222,37 @@ namespace CrossText.Service.Test
         }
 
         /// <summary>
-        ///A test for ReadXml
+        ///A test for IsExpired
         ///</summary>
-        public void ReadXmlTestHelper<TKey, TValue>()
+        public void IsExpiredTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
-            XmlReader reader = null; // TODO: Initialize to an appropriate value
-            target.ReadXml(reader);
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
+            TKey key = default(TKey); // TODO: Initialize to an appropriate value
+            bool expected = false; // TODO: Initialize to an appropriate value
+            bool actual;
+            actual = target.IsExpired(key);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void IsExpiredTest()
+        {
+            IsExpiredTestHelper<GenericParameterHelper, GenericParameterHelper>();
+        }
+
+        /// <summary>
+        ///A test for ReadSerializedXml
+        ///</summary>
+        public void ReadSerializedXmlTestHelper<TKey, TValue>()
+        {
+            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(param0); // TODO: Initialize to an appropriate value
+            target.ReadSerializedXml();
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -188,9 +260,10 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void ReadXmlTest()
+        [DeploymentItem("CrossText.Service.dll")]
+        public void ReadSerializedXmlTest()
         {
-            ReadXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();
+            ReadSerializedXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();
         }
 
         /// <summary>
@@ -198,7 +271,8 @@ namespace CrossText.Service.Test
         ///</summary>
         public void RemoveTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
             TKey key = default(TKey); // TODO: Initialize to an appropriate value
             target.Remove(key);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
@@ -214,13 +288,13 @@ namespace CrossText.Service.Test
         }
 
         /// <summary>
-        ///A test for WriteXml
+        ///A test for WriteSerializedXml
         ///</summary>
-        public void WriteXmlTestHelper<TKey, TValue>()
+        public void WriteSerializedXmlTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
-            XmlWriter writer = null; // TODO: Initialize to an appropriate value
-            target.WriteXml(writer);
+            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(param0); // TODO: Initialize to an appropriate value
+            target.WriteSerializedXml();
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -228,9 +302,10 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void WriteXmlTest()
+        [DeploymentItem("CrossText.Service.dll")]
+        public void WriteSerializedXmlTest()
         {
-            WriteXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();
+            WriteSerializedXmlTestHelper<GenericParameterHelper, GenericParameterHelper>();
         }
 
         /// <summary>
@@ -238,7 +313,8 @@ namespace CrossText.Service.Test
         ///</summary>
         public void CountTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
             int actual;
             actual = target.Count;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -258,9 +334,10 @@ namespace CrossText.Service.Test
         ///</summary>
         public void DictionaryTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
-            SerializableDictionary<TKey, TValue> expected = null; // TODO: Initialize to an appropriate value
-            SerializableDictionary<TKey, TValue> actual;
+            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(param0); // TODO: Initialize to an appropriate value
+            SerializableDictionary<TKey, CacheItem<TValue>> expected = null; // TODO: Initialize to an appropriate value
+            SerializableDictionary<TKey, CacheItem<TValue>> actual;
             target.Dictionary = expected;
             actual = target.Dictionary;
             Assert.AreEqual(expected, actual);
@@ -278,12 +355,17 @@ namespace CrossText.Service.Test
         }
 
         /// <summary>
-        ///A test for Instance
+        ///A test for ExpirySpan
         ///</summary>
-        public void InstanceTestHelper<TKey, TValue>()
+        public void ExpirySpanTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache<TKey, TValue> actual;
-            actual = SerializableSiteCache<TKey, TValue>.Instance;
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
+            TimeSpan expected = new TimeSpan(); // TODO: Initialize to an appropriate value
+            TimeSpan actual;
+            target.ExpirySpan = expected;
+            actual = target.ExpirySpan;
+            Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -291,9 +373,9 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void InstanceTest()
+        public void ExpirySpanTest()
         {
-            InstanceTestHelper<GenericParameterHelper, GenericParameterHelper>();
+            ExpirySpanTestHelper<GenericParameterHelper, GenericParameterHelper>();
         }
 
         /// <summary>
@@ -301,7 +383,8 @@ namespace CrossText.Service.Test
         ///</summary>
         public void KeysTestHelper<TKey, TValue>()
         {
-            SerializableSiteCache_Accessor<TKey, TValue> target = new SerializableSiteCache_Accessor<TKey, TValue>(); // TODO: Initialize to an appropriate value
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
             List<TKey> actual;
             actual = target.Keys;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -314,6 +397,30 @@ namespace CrossText.Service.Test
         public void KeysTest()
         {
             KeysTestHelper<GenericParameterHelper, GenericParameterHelper>();
+        }
+
+        /// <summary>
+        ///A test for XmlFilePath
+        ///</summary>
+        public void XmlFilePathTestHelper<TKey, TValue>()
+        {
+            string xmlFilePath = string.Empty; // TODO: Initialize to an appropriate value
+            SerializableSiteCache<TKey, TValue> target = new SerializableSiteCache<TKey, TValue>(xmlFilePath); // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string actual;
+            target.XmlFilePath = expected;
+            actual = target.XmlFilePath;
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void XmlFilePathTest()
+        {
+            XmlFilePathTestHelper<GenericParameterHelper, GenericParameterHelper>();
         }
     }
 }

@@ -1,19 +1,18 @@
-﻿using CrossText.Service.DataContract;
+﻿using CrossText.Service.SiteCaching;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using System.Collections.Generic;
 
 namespace CrossText.Service.Test
 {
     
     
     /// <summary>
-    ///This is a test class for TeletextStructureSiteTest and is intended
-    ///to contain all TeletextStructureSiteTest Unit Tests
+    ///This is a test class for CacheItemTest and is intended
+    ///to contain all CacheItemTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class TeletextStructureSiteTest
+    public class CacheItemTest
     {
 
 
@@ -67,64 +66,86 @@ namespace CrossText.Service.Test
 
 
         /// <summary>
-        ///A test for TeletextStructureSite Constructor
+        ///A test for CacheItem`1 Constructor
         ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
-        [TestMethod()]
-        [HostType("ASP.NET")]
-        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
-        [UrlToTest("http://localhost:1042/")]
-        public void TeletextStructureSiteConstructorTest()
+        public void CacheItemConstructorTestHelper<TValue>()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber);
+            TValue value = default(TValue); // TODO: Initialize to an appropriate value
+            CacheItem<TValue> target = new CacheItem<TValue>(value);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
-        /// <summary>
-        ///A test for SiteNumber
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void SiteNumberTest()
+        public void CacheItemConstructorTest()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.SiteNumber = expected;
-            actual = target.SiteNumber;
+            CacheItemConstructorTestHelper<GenericParameterHelper>();
+        }
+
+        /// <summary>
+        ///A test for CacheItem`1 Constructor
+        ///</summary>
+        public void CacheItemConstructorTest1Helper<TValue>()
+        {
+            CacheItem<TValue> target = new CacheItem<TValue>();
+            Assert.Inconclusive("TODO: Implement code to verify target");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void CacheItemConstructorTest1()
+        {
+            CacheItemConstructorTest1Helper<GenericParameterHelper>();
+        }
+
+        /// <summary>
+        ///A test for CacheTime
+        ///</summary>
+        public void CacheTimeTestHelper<TValue>()
+        {
+            CacheItem<TValue> target = new CacheItem<TValue>(); // TODO: Initialize to an appropriate value
+            DateTime expected = new DateTime(); // TODO: Initialize to an appropriate value
+            DateTime actual;
+            target.CacheTime = expected;
+            actual = target.CacheTime;
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for SubSites
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void SubSitesTest()
+        public void CacheTimeTest()
         {
-            int siteNumber = 0; // TODO: Initialize to an appropriate value
-            TeletextStructureSite target = new TeletextStructureSite(siteNumber); // TODO: Initialize to an appropriate value
-            List<int> expected = null; // TODO: Initialize to an appropriate value
-            List<int> actual;
-            target.SubSites = expected;
-            actual = target.SubSites;
+            CacheTimeTestHelper<GenericParameterHelper>();
+        }
+
+        /// <summary>
+        ///A test for Value
+        ///</summary>
+        public void ValueTestHelper<TValue>()
+        {
+            CacheItem<TValue> target = new CacheItem<TValue>(); // TODO: Initialize to an appropriate value
+            TValue expected = default(TValue); // TODO: Initialize to an appropriate value
+            TValue actual;
+            target.Value = expected;
+            actual = target.Value;
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void ValueTest()
+        {
+            ValueTestHelper<GenericParameterHelper>();
         }
     }
 }
