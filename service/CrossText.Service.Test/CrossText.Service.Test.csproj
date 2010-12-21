@@ -68,9 +68,13 @@
     <Compile Include="HelperTest.cs" />
     <Compile Include="ICrossTextServiceTest.cs" />
     <Compile Include="IMenuStructureLoaderTest.cs" />
+    <Compile Include="ISiteCacheTest.cs" />
+    <Compile Include="IXmlSerializableTest.cs" />
     <Compile Include="MenuStructureListTest.cs" />
     <Compile Include="MenuStructureTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializableDictionaryTest.cs" />
+    <Compile Include="SerializableSiteCacheTest.cs" />
     <Compile Include="ServiceTest.cs" />
     <Compile Include="TeletextStructureSiteTest.cs" />
     <Compile Include="XmlHelperTest.cs" />
@@ -85,6 +89,9 @@
       <Project>{01790646-83D6-4A4A-8D73-501F7986F80D}</Project>
       <Name>CrossText.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,6 +5,8 @@ using System.ServiceModel.Web;
 using CrossText.Service.DataContract;
 using CrossText.Service.MenuStructureLoader;
 using CrossText.Service.Helpers;
+using System.Collections;
+using System.Xml;
 
 namespace CrossText.Service
 {
@@ -94,10 +96,13 @@ namespace CrossText.Service
         /// <returns></returns>
         public DataContract.MenuStructureList GetMenuStructure()
         {
+            String baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            baseDirectory = !baseDirectory.EndsWith("\\") ? baseDirectory + "\\" : baseDirectory;
+
             IMenuStructureLoader loader = new XmlMenuStructureLoader(
-                AppDomain.CurrentDomain.BaseDirectory + ConfigurationHelper.TeletextTeletextStructureDefinition,
-                AppDomain.CurrentDomain.BaseDirectory + ConfigurationHelper.TeletextTeletextStructureSchema,
-                ConfigurationHelper.TeletextTeletextStructureSchemaNamespace
+                baseDirectory + ConfigurationHelper.TeletextStructureDefinition,
+                baseDirectory + ConfigurationHelper.TeletextStructureSchema,
+                ConfigurationHelper.TeletextStructureSchemaNamespace
                 );
 
             return loader.LoadMenuStructures();

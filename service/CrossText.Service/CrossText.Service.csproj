@@ -71,6 +71,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SiteCaching\ISiteCache.cs" />
     <Compile Include="DataContract\FaultContract.cs" />
     <Compile Include="DataContract\MenuStructure.cs" />
     <Compile Include="DataContract\MenuStructureList.cs" />
@@ -81,11 +82,13 @@
     <Compile Include="Helpers\Xml\XmlValidator.cs" />
     <Compile Include="MenuStructureLoader\IMenuStructureLoader.cs" />
     <Compile Include="MenuStructureLoader\XmlMenuStructureLoader.cs" />
+    <Compile Include="Serialization\SerializableDictionary.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
     <Compile Include="ICrossTextService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteCaching\SerializableSiteCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

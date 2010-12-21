@@ -68,11 +68,69 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for FaultContract Constructor
         ///</summary>
+        [TestMethod()]
+        public void FaultContractConstructorTest()
+        {
+            FaultContract target = new FaultContract();
+            Assert.Inconclusive("TODO: Implement code to verify target");
+        }
+
+        /// <summary>
+        ///A test for Message
+        ///</summary>
+        [TestMethod()]
+        public void MessageTest()
+        {
+            FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string actual;
+            target.Message = expected;
+            actual = target.Message;
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for Source
+        ///</summary>
+        [TestMethod()]
+        public void SourceTest()
+        {
+            FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string actual;
+            target.Source = expected;
+            actual = target.Source;
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for StackTrace
+        ///</summary>
+        [TestMethod()]
+        public void StackTraceTest()
+        {
+            FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string actual;
+            target.StackTrace = expected;
+            actual = target.StackTrace;
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for FaultContract Constructor
+        ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void FaultContractConstructorTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void FaultContractConstructorTest1()
         {
             FaultContract target = new FaultContract();
             Assert.Inconclusive("TODO: Implement code to verify target");
@@ -85,7 +143,10 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void MessageTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void MessageTest1()
         {
             FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
@@ -103,7 +164,10 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void SourceTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void SourceTest1()
         {
             FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
@@ -121,7 +185,10 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void StackTraceTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void StackTraceTest1()
         {
             FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value

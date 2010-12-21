@@ -89,5 +89,25 @@ namespace CrossText.Service.Test
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
+
+        /// <summary>
+        ///A test for LoadMenuStructures
+        ///</summary>
+        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
+        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
+        // whether you are testing a page, web service, or a WCF service.
+        [TestMethod()]
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void LoadMenuStructuresTest1()
+        {
+            IMenuStructureLoader target = CreateIMenuStructureLoader(); // TODO: Initialize to an appropriate value
+            MenuStructureList expected = null; // TODO: Initialize to an appropriate value
+            MenuStructureList actual;
+            actual = target.LoadMenuStructures();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
     }
 }

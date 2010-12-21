@@ -20,7 +20,7 @@ namespace CrossText.Service.Helpers
         /// <summary>
         /// Gets the teletext teletext structure definition.
         /// </summary>
-        public static String TeletextTeletextStructureDefinition
+        public static String TeletextStructureDefinition
         {
             get
             {
@@ -31,7 +31,7 @@ namespace CrossText.Service.Helpers
         /// <summary>
         /// Gets the teletext teletext structure schema.
         /// </summary>
-        public static String TeletextTeletextStructureSchema
+        public static String TeletextStructureSchema
         {
             get
             {
@@ -42,7 +42,7 @@ namespace CrossText.Service.Helpers
         /// <summary>
         /// Gets the teletext teletext structure schema namespace.
         /// </summary>
-        public static String TeletextTeletextStructureSchemaNamespace
+        public static String TeletextStructureSchemaNamespace
         {
             get
             {

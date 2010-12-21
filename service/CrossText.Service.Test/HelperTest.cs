@@ -69,11 +69,85 @@ namespace CrossText.Service.Test
         /// <summary>
         ///A test for CheckIfURLExists
         ///</summary>
+        [TestMethod()]
+        public void CheckIfURLExistsTest()
+        {
+            Uri url = null; // TODO: Initialize to an appropriate value
+            bool expected = false; // TODO: Initialize to an appropriate value
+            bool actual;
+            actual = Helper.CheckIfURLExists(url);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for GetBase64DataURI
+        ///</summary>
+        [TestMethod()]
+        public void GetBase64DataURITest()
+        {
+            string mimeType = string.Empty; // TODO: Initialize to an appropriate value
+            byte[] data = null; // TODO: Initialize to an appropriate value
+            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            string actual;
+            actual = Helper.GetBase64DataURI(mimeType, data);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for GetImageFromURL
+        ///</summary>
+        [TestMethod()]
+        public void GetImageFromURLTest()
+        {
+            string url = string.Empty; // TODO: Initialize to an appropriate value
+            byte[] expected = null; // TODO: Initialize to an appropriate value
+            byte[] actual;
+            actual = Helper.GetImageFromURL(url);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for byteArrayToImage
+        ///</summary>
+        [TestMethod()]
+        public void byteArrayToImageTest()
+        {
+            byte[] byteArrayIn = null; // TODO: Initialize to an appropriate value
+            Image expected = null; // TODO: Initialize to an appropriate value
+            Image actual;
+            actual = Helper_Accessor.byteArrayToImage(byteArrayIn);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for imageToByteArray
+        ///</summary>
+        [TestMethod()]
+        public void imageToByteArrayTest()
+        {
+            Image imageIn = null; // TODO: Initialize to an appropriate value
+            byte[] expected = null; // TODO: Initialize to an appropriate value
+            byte[] actual;
+            actual = Helper_Accessor.imageToByteArray(imageIn);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for CheckIfURLExists
+        ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void CheckIfURLExistsTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void CheckIfURLExistsTest1()
         {
             Uri url = null; // TODO: Initialize to an appropriate value
             bool expected = false; // TODO: Initialize to an appropriate value
@@ -90,7 +164,10 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void GetBase64DataURITest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void GetBase64DataURITest1()
         {
             string mimeType = string.Empty; // TODO: Initialize to an appropriate value
             byte[] data = null; // TODO: Initialize to an appropriate value
@@ -108,7 +185,10 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void GetImageFromURLTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        public void GetImageFromURLTest1()
         {
             string url = string.Empty; // TODO: Initialize to an appropriate value
             byte[] expected = null; // TODO: Initialize to an appropriate value
@@ -125,7 +205,11 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void byteArrayToImageTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        [DeploymentItem("CrossText.Service.dll")]
+        public void byteArrayToImageTest1()
         {
             byte[] byteArrayIn = null; // TODO: Initialize to an appropriate value
             Image expected = null; // TODO: Initialize to an appropriate value
@@ -142,7 +226,11 @@ namespace CrossText.Service.Test
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
         // whether you are testing a page, web service, or a WCF service.
         [TestMethod()]
-        public void imageToByteArrayTest()
+        [HostType("ASP.NET")]
+        [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
+        [UrlToTest("http://localhost:1042/")]
+        [DeploymentItem("CrossText.Service.dll")]
+        public void imageToByteArrayTest1()
         {
             Image imageIn = null; // TODO: Initialize to an appropriate value
             byte[] expected = null; // TODO: Initialize to an appropriate value

@@ -1,18 +1,20 @@
-﻿using CrossText.Service.DataContract;
+﻿using CrossText.Service.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CrossText.Service.Test
 {
     
     
     /// <summary>
-    ///This is a test class for MenuStructureListTest and is intended
-    ///to contain all MenuStructureListTest Unit Tests
+    ///This is a test class for IXmlSerializableTest and is intended
+    ///to contain all IXmlSerializableTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class MenuStructureListTest
+    public class IXmlSerializableTest
     {
 
 
@@ -65,39 +67,15 @@ namespace CrossText.Service.Test
         #endregion
 
 
-        /// <summary>
-        ///A test for MenuStructureList Constructor
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
-        [TestMethod()]
-        public void MenuStructureListConstructorTest()
+        internal virtual IXmlSerializable CreateIXmlSerializable()
         {
-            MenuStructureList target = new MenuStructureList();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            // TODO: Instantiate an appropriate concrete class.
+            IXmlSerializable target = null;
+            return target;
         }
 
         /// <summary>
-        ///A test for Equals
-        ///</summary>
-        // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
-        // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
-        // whether you are testing a page, web service, or a WCF service.
-        [TestMethod()]
-        public void EqualsTest()
-        {
-            MenuStructureList target = new MenuStructureList(); // TODO: Initialize to an appropriate value
-            object obj = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Equals(obj);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for MenuStructureList Constructor
+        ///A test for ReadXml
         ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
@@ -106,14 +84,16 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void MenuStructureListConstructorTest1()
+        public void ReadXmlTest()
         {
-            MenuStructureList target = new MenuStructureList();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            IXmlSerializable target = CreateIXmlSerializable(); // TODO: Initialize to an appropriate value
+            XmlReader reader = null; // TODO: Initialize to an appropriate value
+            target.ReadXml(reader);
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
         /// <summary>
-        ///A test for Equals
+        ///A test for WriteXml
         ///</summary>
         // TODO: Ensure that the UrlToTest attribute specifies a URL to an ASP.NET page (for example,
         // http://.../Default.aspx). This is necessary for the unit test to be executed on the web server,
@@ -122,15 +102,12 @@ namespace CrossText.Service.Test
         [HostType("ASP.NET")]
         [AspNetDevelopmentServerHost("C:\\Dev\\Workspace\\MethodenDerProgrammierung\\CrossText\\service\\CrossText.Service", "/")]
         [UrlToTest("http://localhost:1042/")]
-        public void EqualsTest1()
+        public void WriteXmlTest()
         {
-            MenuStructureList target = new MenuStructureList(); // TODO: Initialize to an appropriate value
-            object obj = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Equals(obj);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IXmlSerializable target = CreateIXmlSerializable(); // TODO: Initialize to an appropriate value
+            XmlWriter writer = null; // TODO: Initialize to an appropriate value
+            target.WriteXml(writer);
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
     }
 }
