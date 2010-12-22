@@ -67,7 +67,7 @@ TeletextApp.prototype.ShowPage = function(PageNumber)
     var app = this;
     
     var callback = function(Data) {
-        app.SetImageData(Data, "#ImgTeletextPage");
+        app.SetImageData(Data, "#contentImg");
         app.CurrentPage = PageNumber;
         app.CurrentSubPage = 0;
         
@@ -139,11 +139,16 @@ TeletextApp.prototype.GetSubPageCount = function()
     //"this" doesn't work in anonymous functions
     var app = this;
 
-    var callback = function(Data) {
-        app.SubPageCount = 0;
-        if(Data != null) {
-            app.SubPageCount = Data.SubSites.length;     
+    var callback = function(data) {
+        var existingPage, subPageCount;
+        // TODO: check for non-existing pages here
+        if(data !== null) {
+            existingPage = true;
+            subPageCount = data.SubSites.length;
     	}
+       else {
+           // TODO: Show Error-Message
+       }
     }
 
     this.WebserviceClient.GetTeletextStructure(this.CurrentPage, callback);

@@ -51,7 +51,7 @@ TeletextClient.prototype.GetTeletextStructure = function(PageNumber, CallbackMet
 {
     this.GetJSONFromService(
         "GetTeletextStructure", 
-        {number: PageNumber}, 
+        {siteNumber: PageNumber},
         CallbackMethod);
 }
 
