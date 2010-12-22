@@ -3,8 +3,8 @@ $(document).ready(function(){
 
   // test GetPage
   test("test PageLoading / Navigation", function() {
-       
-    // mocks TeletextClient  
+
+    // mock TeletextClient  
     var client = new Mock();
     client
         .expects(1)
@@ -15,36 +15,33 @@ $(document).ready(function(){
 			.method('GetTeletextStructure')
 			.accepts(333, function(){})
 			.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":256,"SubSites":[1,2,3]});
-  
-                                   
 
     testImg = new Image();
     testImg.id = "contentImg";
     document.body.appendChild(testImg);
 
     var app = new TeletextApp(client);
-    
-    //
+
+    // test correct call
     app.ShowPage(333);
-    
     ok(client.verify(), "verify GetPage calls");
-    
-    
+
     //asynchronous testing
     stop();
     setTimeout(function() {
-   	    equals(testImg.src, imageDataSample, "Image data correctly assigned?");
+   	equals(testImg.src, imageDataSample, "Image data correctly assigned?");
         equals(app.CurrentPage, 333, "CurrentPage variable correctly set?");
-        equals(app.CurrentSubPage, 0, "Subpage resetted?");
+        equals(app.CurrentSubPage, 0, "Subpage reset?");
         start();
         document.body.removeChild(testImg);
     }, 50);
-    
+
   });
   
   // test ShowNextPage
   test("test ShowNextPage", function() {
-    // mocks TeletextClient  
+
+    // mock TeletextClient  
     var client = new Mock();
     client
         .expects(1)
@@ -55,18 +52,15 @@ $(document).ready(function(){
 			.method('GetTeletextStructure')
 			.accepts(334, function(){})
 			.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":334,"SubSites":[1,2,3]});
-                          
 
     testImg = new Image();
     testImg.id = "contentImg";
-    
     document.body.appendChild(testImg);
 
     var app = new TeletextApp(client);
     app.CurrentPage = 333;
  
     //asynchronous testing
-    //NextPage
     app.ShowNextPage();
     stop();
     setTimeout(function() {
@@ -80,7 +74,8 @@ $(document).ready(function(){
   
   // test ShowNextPage
   test("test ShowPreviousPage", function() {
-    // mocks TeletextClient  
+
+    // mock TeletextClient  
     var client = new Mock();
     client
         .expects(1)
@@ -91,7 +86,6 @@ $(document).ready(function(){
 			.method('GetTeletextStructure')
 			.accepts(332, function(){})
 			.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":332,"SubSites":[1,2,3]});
-                          
 
     testImg = new Image();
     testImg.id = "contentImg";
@@ -102,7 +96,6 @@ $(document).ready(function(){
     app.CurrentPage = 333;
  
     //asynchronous testing
-    //NextPage
     app.ShowPreviousPage();
     stop();
     setTimeout(function() {
@@ -111,27 +104,32 @@ $(document).ready(function(){
         document.body.removeChild(testImg);
         start();
     }, 50);
-    
+
   });
 
   // test GetSubPageCount
   test("test GetSubPageCount", function() {
-    var client = new Mock();// mocks TeletextClient
+
+    // mock TeletextClient
+    var client = new Mock();
         client
         .expects(1)
         .accepts(100, function(){})
 	    .method('GetTeletextStructure')
 		.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":334,"SubSites":[1,2,3]});
 
+    // test correct call
     var app = new TeletextApp(client);
-	app.CurrentPage = 100;
+    app.CurrentPage = 100;
     app.GetSubPageCount();
     ok(client.verify(), "verify GetTeletextStructure call");
   });
 
   // test GetMenuStructure
   test("test GetMenuStructure", function() {
-    var client = new Mock();// mocks TeletextClient
+
+    // mock TeletextClient  
+    var client = new Mock();
         client
             .expects(1)
 	    .method('GetMenuStructure')
@@ -141,22 +139,21 @@ $(document).ready(function(){
     app.GetMenuStructure();
     ok(client.verify(), "verify GetMenuStructure call");
   });
-  
+
   // test SetImageData
   test("test SetImageData", function() {
     var client = new Mock();
     var app = new TeletextApp(client);
-    
+
     var testImg = new Image();
     testImg.id = "testImage";
     document.body.appendChild(testImg);
-    
-  
+
+    // test if data was set correctly
     app.SetImageData(imageDataSample, "#testImage");
     equals(testImg.src, imageDataSample, "Image data correctly assigned?");
-    
+
     document.body.removeChild(testImg);
-  
   });
 
 });
