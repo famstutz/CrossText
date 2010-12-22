@@ -125,10 +125,115 @@ $(document).ready(function(){
     ok(client.verify(), "verify GetTeletextStructure call");
   });
 
+// test ShowSubPage
+  test("test ShowSubPage", function() {
+
+    // mocks TeletextClient
+    var client = new Mock();
+    client
+        .expects(1)
+            .method('GetTeletextSubPage')
+            .accepts(333, 1, function(){})
+            .callFunctionWith(imageDataSample);
+
+    testImg = new Image();
+    testImg.id = "contentImg";
+    document.body.appendChild(testImg);
+
+    var app = new TeletextApp(client);
+
+    app.CurrentPage = 333;
+    app.CurrentSubPage = 0;
+    app.SubPageCount = 3;
+    app.ShowSubPage(1);
+
+    ok(client.verify(), "verify GetTeletextSubPage call");
+
+
+    //asynchronous testing
+    stop();
+    setTimeout(function() {
+        equals(testImg.src, imageDataSample, "Image data correctly assigned?");
+        equals(app.CurrentSubPage, 1, "CurrentSubPage correctly set?");
+        start();
+        document.body.removeChild(testImg);
+    }, 50);
+
+  });
+
+  // test ShowNextSubPage
+  test("test ShowNextSubPage", function() {
+
+    // mocks TeletextClient
+    var client = new Mock();
+    client
+        .expects(1)
+            .method('GetTeletextSubPage')
+            .accepts(333, 3, function(){})
+            .callFunctionWith(imageDataSample);
+
+    testImg = new Image();
+    testImg.id = "contentImg";
+    document.body.appendChild(testImg);
+
+    var app = new TeletextApp(client);
+
+    app.CurrentPage = 333;
+    app.CurrentSubPage = 2;
+    app.SubPageCount = 3;
+    app.ShowNextSubPage();
+
+    ok(client.verify(), "verify GetTeletextSubPage call");
+
+    //asynchronous testing
+    stop();
+    setTimeout(function() {
+        equals(testImg.src, imageDataSample, "Image data correctly assigned?");
+        equals(app.CurrentSubPage, 3, "CurrentSubPage correctly set?");
+        start();
+        document.body.removeChild(testImg);
+    }, 50);
+  });
+
+  // test ShowPreviousSubPage
+  test("test ShowPreviousSubPage", function() {
+
+    // mocks TeletextClient
+    var client = new Mock();
+    client
+        .expects(1)
+            .method('GetTeletextSubPage')
+            .accepts(333, 1, function(){})
+            .callFunctionWith(imageDataSample);
+
+    testImg = new Image();
+    testImg.id = "contentImg";
+    document.body.appendChild(testImg);
+
+    var app = new TeletextApp(client);
+
+    app.CurrentPage = 333;
+    app.CurrentSubPage = 2;
+    app.SubPageCount = 3;
+    app.ShowPreviousSubPage();
+
+    ok(client.verify(), "verify GetTeletextSubPage call");
+
+    //asynchronous testing
+    stop();
+    setTimeout(function() {
+        equals(testImg.src, imageDataSample, "Image data correctly assigned?");
+        equals(app.CurrentSubPage, 1, "CurrentSubPage correctly set?");
+        start();
+        document.body.removeChild(testImg);
+    }, 50);
+
+  });
+
   // test GetMenuStructure
   test("test GetMenuStructure", function() {
 
-    // mock TeletextClient  
+    // mock TeletextClient
     var client = new Mock();
         client
             .expects(1)
