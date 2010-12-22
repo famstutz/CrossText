@@ -19,7 +19,7 @@ $(document).ready(function(){
                                    
 
     testImg = new Image();
-    testImg.id = "ImgTeletextPage";
+    testImg.id = "contentImg";
     document.body.appendChild(testImg);
 
     var app = new TeletextApp(client);
@@ -58,7 +58,7 @@ $(document).ready(function(){
                           
 
     testImg = new Image();
-    testImg.id = "ImgTeletextPage";
+    testImg.id = "contentImg";
     
     document.body.appendChild(testImg);
 
@@ -94,7 +94,7 @@ $(document).ready(function(){
                           
 
     testImg = new Image();
-    testImg.id = "ImgTeletextPage";
+    testImg.id = "contentImg";
     
     document.body.appendChild(testImg);
 
@@ -120,7 +120,8 @@ $(document).ready(function(){
         client
         .expects(1)
         .accepts(100, function(){})
-	    .method('GetTeletextStructure');
+	    .method('GetTeletextStructure')
+		.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":334,"SubSites":[1,2,3]});
 
     var app = new TeletextApp(client);
 	app.CurrentPage = 100;
