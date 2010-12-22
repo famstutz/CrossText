@@ -11,6 +11,10 @@ $(document).ready(function(){
             .method('GetPage')
             .accepts(333, function(){})
             .callFunctionWith(imageDataSample)
+		.andExpects(1)
+			.method('GetTeletextStructure')
+			.accepts(333, function(){})
+			.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":256,"SubSites":[1,2,3]});
   
                                    
 
@@ -34,7 +38,7 @@ $(document).ready(function(){
         equals(app.CurrentSubPage, 0, "Subpage resetted?");
         start();
         document.body.removeChild(testImg);
-    }, 100);
+    }, 50);
     
   });
   
@@ -47,6 +51,10 @@ $(document).ready(function(){
             .method('GetPage')
             .accepts(334, function(){})
             .callFunctionWith(imageDataSample)
+		.andExpects(1)
+			.method('GetTeletextStructure')
+			.accepts(334, function(){})
+			.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":334,"SubSites":[1,2,3]});
                           
 
     testImg = new Image();
@@ -66,7 +74,7 @@ $(document).ready(function(){
         equals(app.CurrentPage, 334, "CurrentPage variable set to next page?");
         document.body.removeChild(testImg);
         start();
-    }, 100);
+    }, 50);
     
   });
   
@@ -79,6 +87,10 @@ $(document).ready(function(){
             .method('GetPage')
             .accepts(332, function(){})
             .callFunctionWith(imageDataSample)
+		.andExpects(1)
+			.method('GetTeletextStructure')
+			.accepts(332, function(){})
+			.callFunctionWith({"__type":"TeletextStructureSite:#CrossText.Service.DataContract","SiteNumber":332,"SubSites":[1,2,3]});
                           
 
     testImg = new Image();
@@ -98,12 +110,12 @@ $(document).ready(function(){
         equals(app.CurrentPage, 332, "CurrentPage variable set to previous page?");
         document.body.removeChild(testImg);
         start();
-    }, 100);
+    }, 50);
     
   });
 
-  // test AnalyzePage
-  test("test AnalyzePage", function() {
+  // test GetSubPageCount
+  test("test GetSubPageCount", function() {
     var client = new Mock();// mocks TeletextClient
         client
         .expects(1)
@@ -111,7 +123,8 @@ $(document).ready(function(){
 	    .method('GetTeletextStructure');
 
     var app = new TeletextApp(client);
-    app.AnalyzePage(100);
+	app.CurrentPage = 100;
+    app.GetSubPageCount();
     ok(client.verify(), "verify GetTeletextStructure call");
   });
 
