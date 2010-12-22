@@ -90,7 +90,7 @@ TeletextApp.prototype.ShowSubPage = function(SubPage)
         //"this" doesn't work in anonymous functions
         var app = this;
         var callback = function(Data) {
-            app.SetImageData(Data, "#ImgTeletextPage");
+            app.SetImageData(Data, "#contentImg");
         }
         
         this.WebserviceClient.GetTeletextSubPage(this.CurrentPage, SubPage,  callback);
