@@ -2,15 +2,17 @@ $(document).ready(function(){
   var imageDataSample = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC';
 
   // test GetPage
-  test("test GetPage", function() {
-    expect(2);
-  
-    var client = new Mock();// mocks TeletextClient
-        client
+  test("test PageLoading / Navigation", function() {
+       
+    // mocks TeletextClient  
+    var client = new Mock();
+    client
         .expects(1)
             .method('GetPage')
-            .accepts(100, function(){})
-            .callFunctionWith(imageDataSample); 
+            .accepts(333, function(){})
+            .callFunctionWith(imageDataSample)
+  
+                                   
 
     testImg = new Image();
     testImg.id = "ImgTeletextPage";
@@ -19,21 +21,87 @@ $(document).ready(function(){
     var app = new TeletextApp(client);
     
     //
-    app.ShowPage(100);
-    ok(client.verify(), "verify GetPage call");
+    app.ShowPage(333);
+    
+    ok(client.verify(), "verify GetPage calls");
     
     
     //asynchronous testing
     stop();
     setTimeout(function() {
    	    equals(testImg.src, imageDataSample, "Image data correctly assigned?");
+        equals(app.CurrentPage, 333, "CurrentPage variable correctly set?");
+        equals(app.CurrentSubPage, 0, "Subpage resetted?");
         start();
         document.body.removeChild(testImg);
     }, 100);
     
+  });
+  
+  // test ShowNextPage
+  test("test ShowNextPage", function() {
+    // mocks TeletextClient  
+    var client = new Mock();
+    client
+        .expects(1)
+            .method('GetPage')
+            .accepts(334, function(){})
+            .callFunctionWith(imageDataSample)
+                          
+
+    testImg = new Image();
+    testImg.id = "ImgTeletextPage";
+    
+    document.body.appendChild(testImg);
+
+    var app = new TeletextApp(client);
+    app.CurrentPage = 333;
+ 
+    //asynchronous testing
+    //NextPage
+    app.ShowNextPage();
+    stop();
+    setTimeout(function() {
+        ok(client.verify(), "verify GetPage calls");
+        equals(app.CurrentPage, 334, "CurrentPage variable set to next page?");
+        document.body.removeChild(testImg);
+        start();
+    }, 100);
     
   });
   
+  // test ShowNextPage
+  test("test ShowPreviousPage", function() {
+    // mocks TeletextClient  
+    var client = new Mock();
+    client
+        .expects(1)
+            .method('GetPage')
+            .accepts(332, function(){})
+            .callFunctionWith(imageDataSample)
+                          
+
+    testImg = new Image();
+    testImg.id = "ImgTeletextPage";
+    
+    document.body.appendChild(testImg);
+
+    var app = new TeletextApp(client);
+    app.CurrentPage = 333;
+ 
+    //asynchronous testing
+    //NextPage
+    app.ShowPreviousPage();
+    stop();
+    setTimeout(function() {
+        ok(client.verify(), "verify GetPage calls");
+        equals(app.CurrentPage, 332, "CurrentPage variable set to previous page?");
+        document.body.removeChild(testImg);
+        start();
+    }, 100);
+    
+  });
+
   // test AnalyzePage
   test("test AnalyzePage", function() {
     var client = new Mock();// mocks TeletextClient

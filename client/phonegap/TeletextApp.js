@@ -4,6 +4,8 @@ TeletextApp Class
 function TeletextApp(WebserviceClient)
 {
     this.WebserviceClient = WebserviceClient;
+    this.CurrentPage = 0;
+    this.CurrentSubPage = 0;
 }
 
 /*
@@ -50,9 +52,25 @@ TeletextApp.prototype.ShowPage = function(PageNumber)
     
     var callback = function(Data) {
         app.SetImageData(Data, "#ImgTeletextPage");
+        app.CurrentPage = PageNumber;
+        app.CurrentSubPage = 0;
     }
     
     this.WebserviceClient.GetPage(PageNumber, callback);
+}
+
+/*
+ShowNextPage
+*/
+TeletextApp.prototype.ShowNextPage = function(){
+    this.ShowPage(this.CurrentPage+1);
+}
+
+/*
+ShowPreviousPage
+*/
+TeletextApp.prototype.ShowPreviousPage = function(){
+    this.ShowPage(this.CurrentPage-1);
 }
 
 /*
