@@ -6,6 +6,7 @@ function TeletextApp(WebserviceClient)
     this.WebserviceClient = WebserviceClient;
     this.CurrentPage = 0;
     this.CurrentSubPage = 0;
+    this.SubPageCount = 0;
 }
 
 /*
@@ -23,14 +24,29 @@ TeletextApp.prototype.RegisterEvents = function()
     
     $("#BtnLoadPage").click(function()
     {
-        var pageNumber = $("#TxtPageNumber").val();
+        var pageNumber = parseInt($("#TxtPageNumber").val());
         app.ShowPage(pageNumber);
     });
 
-    $("#BtnTestPage").click(function()
+    $("#BtnNextPage").click(function()
     {
-        var pageNumber = $("#TxtPageNumber").val();
-        app.AnalyzePage(pageNumber);
+        app.ShowNextPage();
+    });
+    
+    $("#BtnPrevPage").click(function()
+    {
+        app.ShowPreviousPage();
+    });
+    
+    
+    $("#BtnNextSubPage").click(function()
+    {
+        app.ShowNextSubPage();
+    });
+    
+    $("#BtnPrevSubPage").click(function()
+    {
+        app.ShowPreviousSubPage();
     });
 }
 
@@ -54,9 +70,31 @@ TeletextApp.prototype.ShowPage = function(PageNumber)
         app.SetImageData(Data, "#ImgTeletextPage");
         app.CurrentPage = PageNumber;
         app.CurrentSubPage = 0;
+        
+        //AnalyzePage to get the SubPageCount
+        app.GetSubPageCount(PageNumber);
     }
     
     this.WebserviceClient.GetPage(PageNumber, callback);
+}
+
+/*
+ShowSubpage
+*/
+TeletextApp.prototype.ShowSubPage = function(SubPage)
+{
+    if((this.SubPageCount > 0) && (SubPage > 0) && (SubPage <= this.SubPageCount)){
+        
+        this.CurrentSubPage = SubPage;
+        
+        //"this" doesn't work in anonymous functions
+        var app = this;
+        var callback = function(Data) {
+            app.SetImageData(Data, "#ImgTeletextPage");
+        }
+        
+        this.WebserviceClient.GetTeletextSubPage(this.CurrentPage, SubPage,  callback);
+    }
 }
 
 /*
@@ -74,25 +112,41 @@ TeletextApp.prototype.ShowPreviousPage = function(){
 }
 
 /*
-AnalyzePage
+ShowNextSubpage
 */
-TeletextApp.prototype.AnalyzePage = function(PageNumber)
+TeletextApp.prototype.ShowNextSubPage = function()
+{
+    if(this.CurrentSubPage < this.SubPageCount){
+        this.ShowSubPage(this.CurrentSubPage + 1);
+    }
+}
+
+/*
+ShowPreviousSubpage
+*/
+TeletextApp.prototype.ShowPreviousSubPage = function()
+{
+    if(this.CurrentSubPage > 0){
+        this.ShowSubPage(this.CurrentSubPage - 1);
+    }
+}
+
+/*
+GetSubPageCount
+*/
+TeletextApp.prototype.GetSubPageCount = function()
 {
     //"this" doesn't work in anonymous functions
     var app = this;
 
     var callback = function(Data) {
-        var SubPageCount = 0;
+        app.SubPageCount = 0;
         if(Data != null) {
-            SubPageCount = Data.SubSites.length;     
-            /*$.each(Data.SubSites, function(index, value) {
-                SubPageCount++;                
-    	    });*/
+            app.SubPageCount = Data.SubSites.length;     
     	}
-        //alert(SubPageCount);   
     }
 
-    this.WebserviceClient.GetTeletextStructure(PageNumber, callback);
+    this.WebserviceClient.GetTeletextStructure(this.CurrentPage, callback);
 }
 
 /*
