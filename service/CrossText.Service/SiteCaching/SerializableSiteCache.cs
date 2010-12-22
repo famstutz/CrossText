@@ -76,6 +76,17 @@ namespace CrossText.Service.SiteCaching
         }
         #endregion
 
+        #region Deconstructor
+        /// <summary>
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// <see cref="SerializableSiteCache&lt;TKey, TValue&gt;"/> is reclaimed by garbage collection.
+        /// </summary>
+        ~SerializableSiteCache()
+        {
+            Dispose();
+        }
+        #endregion
+
         #region Implemented Methods from ISiteCache<TKey, TValue>
         /// <summary>
         /// Clears this instance.
@@ -204,15 +215,19 @@ namespace CrossText.Service.SiteCaching
         /// </summary>
         private void WriteSerializedXml()
         {
+            XmlWriter writer = XmlWriter.Create(XmlFilePath);
             try
             {
-                XmlWriter writer = XmlWriter.Create(XmlFilePath);
                 Dictionary.WriteXml(writer);
-                writer.Close();
             }
             catch (Exception ex)
             {
                 throw new ApplicationException(String.Format("Could not write to XML-file '{0}'", XmlFilePath), ex);
+            }
+            finally
+            {
+                if (writer != null)
+                    writer.Close();
             }
         }
 
@@ -225,15 +240,18 @@ namespace CrossText.Service.SiteCaching
             if (!File.Exists(XmlFilePath))
                 throw new ApplicationException(String.Format("Supplied XML-file '{0}' does not exist", XmlFilePath));
 
+            XmlReader reader = XmlReader.Create(XmlFilePath);
             try
             {
-                XmlReader reader = XmlReader.Create(XmlFilePath);
                 Dictionary.ReadXml(reader);
-                reader.Close();
             }
             catch (Exception ex)
             {
                 throw new ApplicationException(String.Format("Could not load from XML-file '{0}'", XmlFilePath), ex);
+            }
+            finally
+            {
+                reader.Close();
             }
         }
         #endregion
@@ -244,7 +262,8 @@ namespace CrossText.Service.SiteCaching
         /// </summary>
         public void Dispose()
         {
-            WriteSerializedXml();
+            if (Count > 0)
+                WriteSerializedXml();
         }
         #endregion
     }
