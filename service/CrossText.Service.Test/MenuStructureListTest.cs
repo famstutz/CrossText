@@ -72,7 +72,8 @@ namespace CrossText.Service.Test
         public void MenuStructureListConstructorTest()
         {
             MenuStructureList target = new MenuStructureList();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            bool expected = true;
+            Assert.AreEqual(expected, target != null);
         }
 
         /// <summary>
@@ -81,13 +82,12 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void EqualsTest()
         {
-            MenuStructureList target = new MenuStructureList(); // TODO: Initialize to an appropriate value
-            object obj = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
+            MenuStructureList target = new MenuStructureList();
+            object obj = null;
+            bool expected = false;
             bool actual;
             actual = target.Equals(obj);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

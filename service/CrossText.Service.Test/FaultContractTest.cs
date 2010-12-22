@@ -71,8 +71,9 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void FaultContractConstructorTest()
         {
-            FaultContract target = new FaultContract();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+          FaultContract target = new FaultContract() { Message = "Test Message", Source = "Source", StackTrace = "StackTrace" };
+          bool expected = true;
+          Assert.AreEqual(expected, target.Message.Length > 0);
         }
 
         /// <summary>
@@ -81,13 +82,10 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void MessageTest()
         {
-            FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            target.Message = expected;
-            actual = target.Message;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            FaultContract target = new FaultContract() { Message = "Test Message" };
+            string expected = target.Message;
+
+            Assert.AreEqual(expected, target.Message);
         }
 
         /// <summary>
@@ -96,13 +94,10 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void SourceTest()
         {
-            FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            target.Source = expected;
-            actual = target.Source;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+          FaultContract target = new FaultContract() { Source = "Test Message" };
+          string expected = target.Source;
+
+          Assert.AreEqual(expected, target.Source);
         }
 
         /// <summary>
@@ -111,13 +106,10 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void StackTraceTest()
         {
-            FaultContract target = new FaultContract(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            target.StackTrace = expected;
-            actual = target.StackTrace;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+          FaultContract target = new FaultContract() { StackTrace = "Test Message" };
+          string expected = target.StackTrace;
+
+          Assert.AreEqual(expected, target.StackTrace);
         }
     }
 }

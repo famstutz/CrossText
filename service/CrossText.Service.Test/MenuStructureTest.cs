@@ -72,7 +72,8 @@ namespace CrossText.Service.Test
         public void MenuStructureConstructorTest()
         {
             MenuStructure target = new MenuStructure();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            bool expected = true;
+            Assert.AreEqual(expected, target!=null);
         }
 
         /// <summary>
@@ -81,13 +82,12 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void EqualsTest()
         {
-            MenuStructure target = new MenuStructure(); // TODO: Initialize to an appropriate value
-            object obj = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
+            MenuStructure target = new MenuStructure() { Title = "News", SiteNumber = 100 };
+            object obj = null;
+            bool expected = false;
             bool actual;
             actual = target.Equals(obj);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -96,13 +96,11 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void SiteNumberTest()
         {
-            MenuStructure target = new MenuStructure(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
+            MenuStructure target = new MenuStructure() { SiteNumber = 256 };
+            int expected = 256;
             int actual;
-            target.SiteNumber = expected;
             actual = target.SiteNumber;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -111,13 +109,11 @@ namespace CrossText.Service.Test
         [TestMethod()]
         public void TitleTest()
         {
-            MenuStructure target = new MenuStructure(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
+            MenuStructure target = new MenuStructure() { Title = "News" };
+            string expected = "News";
             string actual;
-            target.Title = expected;
             actual = target.Title;
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }
