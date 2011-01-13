@@ -1,0 +1,56 @@
+﻿<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="mobileoptimized" content="800" />
+    <meta name="viewport" content="user-scalable=no" />
+   <title>CrossText</title>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+
+    <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="TeletextClient.js"></script>
+    <script type="text/javascript" charset="utf-8" src="TeletextApp.js"></script>
+    <script type="text/javascript" charset="utf-8">
+   
+      $().ready(function()
+      {
+          const SERVICE_URL = "http://service.centro-espanol-zug.ch/Service.svc/";
+
+          $.ajaxSetup({
+              timeout: 7000
+          });
+
+          //Setup Teletext App
+          var client = new TeletextClient(SERVICE_URL)
+          var app = new TeletextApp(client);
+          app.RegisterEvents();
+
+          //Load Home Page
+          app.ShowPage(100);
+      });
+   
+    </script>
+  </head>
+  <body class="liquid">
+    <h1>CrossText</h1>
+    <div>
+        <ul>
+            <li><a id="MenuStructure" href="#">GetMenuStructure</a></li>
+        </ul>
+    </div>
+    <div>
+        <input type="text" value="100" id="TxtPageNumber" />
+        <input type="button" value="Load Page" id="BtnLoadPage" />
+        <input type="button" value="Prev. Page" id="BtnPrevPage" />
+        <input type="button" value="Next Page" id="BtnNextPage" />
+        <input type="button" value="Prev. SubPage" id="BtnPrevSubPage" />
+        <input type="button" value="Next SubPage" id="BtnNextSubPage" />
+    </div>
+    <div class="liquid">
+<img id="contentImg" class="liquid" alt="Teletext Seite" />
+    </div>
+  </body>
+</html>
+
