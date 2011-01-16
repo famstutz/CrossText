@@ -102,19 +102,27 @@ namespace CrossText.Service
         /// <returns></returns>
         public DataContract.TeletextStructureSite GetTeletextStructure(int SiteNumber)
         {
+          try
+          {
             TeletextStructureSite siteInfo = new TeletextStructureSite(SiteNumber);
 
             // check if Subsites exists
             for (int indexSite = 0; indexSite < 10; indexSite++)
             {
-                string Url = UrlFormatter.FormatTeletextUrl(SiteNumber, indexSite);
-                if (Helper.CheckIfURLExists(new Uri(Url)))
-                {
-                    siteInfo.SubSites.Add(indexSite);
-                }
+              string Url = UrlFormatter.FormatTeletextUrl(SiteNumber, indexSite);
+              if (Helper.CheckIfURLExists(new Uri(Url)))
+              {
+                siteInfo.SubSites.Add(indexSite);
+              }
             }
 
             return siteInfo;
+          }
+          catch (Exception ex)
+          {
+            FaultContract fault = new FaultContract();
+            throw new FaultException<FaultContract>(fault, new FaultReason(ex.Message));
+          }
         }
 
         /// <summary>
@@ -123,13 +131,21 @@ namespace CrossText.Service
         /// <returns></returns>
         public DataContract.MenuStructureList GetMenuStructure()
         {
-            IMenuStructureLoader loader = new XmlMenuStructureLoader(
-                EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.TeletextStructureDefinition,
-                EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.TeletextStructureSchema,
-                ConfigurationHelper.TeletextStructureSchemaNamespace
-                );
+          try
+          {
+             IMenuStructureLoader loader = new XmlMenuStructureLoader(
+             EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.TeletextStructureDefinition,
+             EnvironmentHelper.ExecutionDirectory + ConfigurationHelper.TeletextStructureSchema,
+             ConfigurationHelper.TeletextStructureSchemaNamespace
+             );
 
-            return loader.LoadMenuStructures();
+              return loader.LoadMenuStructures();
+          }
+          catch (Exception ex)
+          {
+            FaultContract fault = new FaultContract();
+            throw new FaultException<FaultContract>(fault, new FaultReason(ex.Message));
+          }
         }
         #endregion
     }

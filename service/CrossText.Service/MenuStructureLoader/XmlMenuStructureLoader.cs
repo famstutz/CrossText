@@ -80,6 +80,8 @@ namespace CrossText.Service.MenuStructureLoader
         /// <returns></returns>
         public MenuStructureList LoadMenuStructures()
         {
+          try
+          {
             MenuStructureList msList = new MenuStructureList();
             XDocument xDoc = XDocument.Load(TeletextStructureXml);
             XNamespace xNs = TeletextStructureSchemaNamespace;
@@ -88,13 +90,20 @@ namespace CrossText.Service.MenuStructureLoader
 
             foreach (XElement element in msQuery)
             {
-                msList.Add(new MenuStructure() { 
-                    SiteNumber = Int32.Parse(element.Descendants(xNs + "SiteNumber").FirstOrDefault().Value),
-                    Title = element.Descendants(xNs + "Title").FirstOrDefault().Value 
-                });
+              msList.Add(new MenuStructure()
+              {
+                SiteNumber = Int32.Parse(element.Descendants(xNs + "SiteNumber").FirstOrDefault().Value),
+                Title = element.Descendants(xNs + "Title").FirstOrDefault().Value
+              });
             }
 
             return msList;
+          }
+          catch (Exception ex)
+          {
+            throw new Exception(ex.Message);
+          }
+
         }
         #endregion
     }
