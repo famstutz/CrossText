@@ -53,9 +53,42 @@ TeletextApp.prototype.RegisterEvents = function()
 /*
 SetImageData
 */
-TeletextApp.prototype.SetImageData = function(Data, ImageId)
+TeletextApp.prototype.SetImageData = function(Data, image)
 {
-    $(ImageId).attr("src", Data);
+    $(image).attr("src", Data);
+}
+
+TeletextApp.prototype.Initialize = function(){
+    var app = this;
+    var content = $("div[data-role='content']:visible:visible");
+    var settings = {
+        loadPage: function(element, page) { app.loadPage(element, page); },
+        onPageChanged: function(page){ app.onPageChanged(page); }
+    };
+
+    this.CtSlider = new CtSlider(content, settings);
+}
+
+TeletextApp.prototype.onPageChanged = function(pageNr)
+{
+    $("#pageNumber").html(pageNr);
+}
+
+TeletextApp.prototype.resized = function(){
+    this.CtSlider.setBoundary();
+}
+
+TeletextApp.prototype.loadPage = function(element, pageNumber)
+{
+    var app = this;
+
+    var callback = function(Data) {
+        var img = $("<img>").addClass("pageimage");
+        app.SetImageData(Data, img);
+        element.append(img);
+    }
+
+    this.WebserviceClient.GetPage(pageNumber, callback);
 }
 
 /*
@@ -67,8 +100,8 @@ TeletextApp.prototype.ShowPage = function(PageNumber)
     var app = this;
     
     var callback = function(Data) {
-        app.SetImageData(Data, "#contentImg");
-        app.CurrentPage = PageNumber;
+        app.SetImageData(Data, $("#contentImg"));
+        app.SetCurrentPage(PageNumber);
         app.CurrentSubPage = 0;
         
         //AnalyzePage to get the SubPageCount
@@ -95,6 +128,11 @@ TeletextApp.prototype.ShowSubPage = function(SubPage)
         
         this.WebserviceClient.GetTeletextSubPage(this.CurrentPage, SubPage,  callback);
     }
+}
+
+TeletextApp.prototype.SetCurrentPage = function(CurrentPageNumber)
+{
+    this.CurrentPage = CurrentPageNumber;  
 }
 
 /*

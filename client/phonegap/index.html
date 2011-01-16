@@ -2,58 +2,53 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-
+    <meta name = "viewport" content = "user-scalable=no,width=device-width" />
    <title>CrossText</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="jquery.mobile-1.0a2.min.css" />
 
-    <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery-1.4.4.min.js"></script>   
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8" src="TeletextClient.js"></script>
     <script type="text/javascript" charset="utf-8" src="TeletextApp.js"></script>
-    <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0a2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="GuiHelper.js"></script>
+    <script type="text/javascript" charset="utf-8" src="CtSlider.js"></script>
 
     <script type="text/javascript" charset="utf-8">
    
-      $().ready(function()
-      {
-          const SERVICE_URL = "http://service.centro-espanol-zug.ch/Service.svc/";
+        $().ready(function()
+        {            
+            const SERVICE_URL = "http://service.centro-espanol-zug.ch/Service.svc/";
 
-          $.ajaxSetup({
-              timeout: 7000
-          });
+            $.ajaxSetup({
+                timeout: 7000
+            });
 
-          //Setup Teletext App
-          var client = new TeletextClient(SERVICE_URL)
-          var app = new TeletextApp(client);
-          app.RegisterEvents();
+            //Setup Teletext App
+            var client = new TeletextClient(SERVICE_URL)
+            var app = new TeletextApp(client);
+            app.RegisterEvents();
 
-          //Load Home Page
-          app.ShowPage(100);
+            fixgeometry();
+            $(window).bind("orientationchange resize pageshow", function(){ 
+                fixgeometry();
+                app.resized();
+            });
+
+            app.Initialize();
 
       });
-   
     </script>
 
   </head>
-  <body class="liquid">
-    <h1>CrossText</h1>
-    <div>
-        <ul> 
-            <li><a id="MenuStructure" href="#">GetMenuStructure</a></li> 
-        </ul> 
-    </div>
-    <div>
-        <input type="text" value="100" id="TxtPageNumber" />
-        <input type="button" value="Load Page" id="BtnLoadPage" />
-        <input type="button" value="Prev. Page" id="BtnPrevPage" />
-        <input type="button" value="Next Page" id="BtnNextPage" />
-        <input type="button" value="Prev. SubPage" id="BtnPrevSubPage" />
-        <input type="button" value="Next SubPage" id="BtnNextSubPage" />
-    </div>
-    <div class="liquid">
-	<img id="contentImg" class="liquid" alt="Teletext Seite" />
-    </div> 
+  <body>
+    <div data-role="page">
+        <div data-role="header" class="header">
+    	   <h1>CrossText: Page <span id="pageNumber">100</span></h1> 
+    	</div>
+        <div data-role="content" class="content" style="padding: 0;"></div>
+     </div>
   </body>
 </html>
