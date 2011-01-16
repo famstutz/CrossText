@@ -7,7 +7,7 @@ function CtSlider(parent, options)
     this.settings = {
             firstPage: 100,
             duration: 300,
-            minimumslide: 20,
+            minimumSlide: 20,
             loadPage: function(item, page){},
             pageChanged: function(page){}
         };
@@ -44,6 +44,7 @@ CtSlider.prototype.bindTouchEvents = function()
     var settings = this.settings;
     var started = false;
     var startX = 0;
+    var stopX = 0;
     var oriX = 0;
     
     var supportTouch = $.support.touch;
@@ -67,10 +68,10 @@ CtSlider.prototype.bindTouchEvents = function()
     {
         started = false;
         event.preventDefault();
-        var slideDelta = Math.abs(startX - event.pageX);
+        var slideDelta = Math.abs(startX - stopX);
         var adjustment = slider.Width - slideDelta;
             
-        if(startX > event.pageX) {
+        if(startX > stopX) {
             slider.moveLeft(slideDelta, adjustment);
         }
         else {
@@ -82,6 +83,7 @@ CtSlider.prototype.bindTouchEvents = function()
     {
         if(started){
             var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+            stopX = data.pageX;
             slider.slideContainer.css("left", oriX + data.pageX - startX);       
             event.preventDefault();
         }
@@ -97,7 +99,7 @@ CtSlider.prototype.insertLeft = function()
     this.Items[0] = this.createItem(this.currentPage - 1);
     this.slideContainer.prepend(this.Items[0]);
     last.remove();
-    this.correctslideContainerPos();
+    this.correctSlideContainerPos();
 }
 
 CtSlider.prototype.insertRight = function() 
@@ -108,10 +110,10 @@ CtSlider.prototype.insertRight = function()
     this.Items[2] = this.createItem(this.currentPage + 1);
     this.slideContainer.append(this.Items[2]);
     first.remove();
-    this.correctslideContainerPos();
+    this.correctSlideContainerPos();
 }
 
-CtSlider.prototype.correctslideContainerPos = function()
+CtSlider.prototype.correctSlideContainerPos = function()
 {
     this.slideContainer.css("left", - this.Width);       
 }
@@ -119,11 +121,12 @@ CtSlider.prototype.correctslideContainerPos = function()
 CtSlider.prototype.moveLeft = function(slideDelta, adjustment)
 {
     var slider = this;
-    if (!this.hasNext("right") || slideDelta < this.settings.minimumslide) {
-        this.slideContainer.animate({ left: "+=" + slideDelta}, this.settings.duration, function(){ slider.correctslideContainerPos(); });
+    if (!this.hasNext("right") || slideDelta < this.settings.minimumSlide) {
+        this.slideContainer.animate({ left: "+=" + slideDelta}, this.settings.duration, function(){ slider.correctSlideContainerPos(); });
         return;
     }
     this.currentPage++;
+    
     this.slideContainer.animate({ left: "-=" + adjustment}, this.settings.duration, function(){ slider.insertRight(); });
     this.settings.onPageChanged(this.currentPage);
 }
@@ -131,11 +134,12 @@ CtSlider.prototype.moveLeft = function(slideDelta, adjustment)
 CtSlider.prototype.moveRight = function(slideDelta, adjustment)
 {
     var slider = this;
-    if (!this.hasNext("left") || slideDelta < this.settings.minimumslide) {
-        this.slideContainer.animate({ left: "-=" + slideDelta}, this.settings.duration, function(){ slider.correctslideContainerPos(); });
+    if (!this.hasNext("left") || slideDelta < this.settings.minimumSlide) {
+        this.slideContainer.animate({ left: "-=" + slideDelta}, this.settings.duration, function(){ slider.correctSlideContainerPos(); });
         return;
     }
     this.currentPage--;
+    
     this.slideContainer.animate({ left: "+=" + adjustment}, this.settings.duration, function(){ slider.insertLeft(); });
     this.settings.onPageChanged(this.currentPage);
 }
