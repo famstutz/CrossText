@@ -71,8 +71,8 @@ namespace CrossText.Service.SiteCaching
             if (File.Exists(XmlFilePath))
                 ReadSerializedXml();
             
-            if (ExpirySpan == null)
-                new TimeSpan(0, 1, 0, 0, 0); // Initialize an the expiry timespan of 1 hour
+            if (ExpirySpan == default(TimeSpan))
+                ExpirySpan = new TimeSpan(0, 1, 0, 0, 0); // Initialize an the expiry timespan of 1 hour
         }
         #endregion
 
@@ -184,7 +184,7 @@ namespace CrossText.Service.SiteCaching
                 return false;
 
             CacheItem<TValue> item = GetItem(key);
-            if ((item.CacheTime + ExpirySpan) > DateTime.Now)
+            if ((item.CacheTime + ExpirySpan) < DateTime.Now)
                 return true;
             return false;
         }
