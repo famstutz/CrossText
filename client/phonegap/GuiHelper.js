@@ -12,9 +12,7 @@
     var viewport_height = $(window).height();
       
     var content_height = viewport_height - header.outerHeight();// - footer.outerHeight();
-   /* Trim margin/border/padding height */
+    /* Trim margin/border/padding height */
     content_height -= (content.outerHeight() - content.height());
     content.height(content_height);
-} /* fixgeometry */
-    
-  
+}

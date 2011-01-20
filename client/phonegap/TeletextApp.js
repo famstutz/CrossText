@@ -55,7 +55,7 @@ SetImageData
 */
 TeletextApp.prototype.SetImageData = function(Data, image)
 {
-    $(image).attr("src", Data);
+    $(image).css('background-image', 'url('+Data+')');
 }
 
 TeletextApp.prototype.Initialize = function(){
@@ -83,7 +83,7 @@ TeletextApp.prototype.loadPage = function(element, pageNumber)
     var app = this;
 
     var callback = function(Data) {
-        var img = $("<img>").addClass("pageimage");
+        var img = $("<div>").addClass("pageimage");
         app.SetImageData(Data, img);
         element.append(img);
     }

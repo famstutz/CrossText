@@ -17,14 +17,20 @@ body {
     width: 100%;
 }
 
+.pageimage {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
 .portrait .pageimage
 {
-    width: 100%;
+    background-size: 100% auto;
 }
 
 .landscape .pageimage
 {
-    height: 100%;
+    background-size: auto 100%;
 }
 
 .slideContainer {
